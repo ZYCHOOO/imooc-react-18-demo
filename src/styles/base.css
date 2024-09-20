@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 1rem 等于 html fontSize 的大小 */
+html {
+  font-size: 100px;
+}
