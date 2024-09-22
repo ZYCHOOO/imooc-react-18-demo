@@ -1,11 +1,9 @@
 /*
  * @Date: 2023-05-28 23:06:16
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-20 16:12:05
+ * @LastEditTime: 2024-09-20 17:26:32
  * @FilePath: /react-learn/huanlegou/src/index.tsx
  */
-import './styles/base.css';
-import './styles/border.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

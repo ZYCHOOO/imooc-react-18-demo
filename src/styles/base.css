@@ -7,3 +7,26 @@
 html {
   font-size: 100px;
 }
+
+@font-face {
+  font-family: "iconfont"; /* Project id 4690127 */
+  src: url('//at.alicdn.com/t/c/font_4690127_0qcsx6zxtai.woff2?t=1726821666067') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4690127_0qcsx6zxtai.woff?t=1726821666067') format('woff'),
+       url('//at.alicdn.com/t/c/font_4690127_0qcsx6zxtai.ttf?t=1726821666067') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input::-webkit-autofill,
+input::-webkit-autofill:hover,
+input::-webkit-autofill:focus,
+input::-webkit-autofill:active {
+  -webkit-transition-delay: 99999s;
+  -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+}
