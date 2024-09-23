@@ -1,14 +1,41 @@
-import './style.css';
-import { useCallback } from 'react';
+import './style.scss';
+import axios from 'axios';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [data, setData] = useState(null);
+  const [error, setError] = useState('');
+  const [loaded, setLoaded] = useState(false);
   
   const handleRegister = useCallback(() => {
     navigate('/register');
   }, [navigate]);
 
+  function handleLogin() {
+    axios.get('/a.json')
+      .then((res) => {
+        setLoaded(true);
+        setData(res.data);
+      }).catch((err) => {
+        setLoaded(true);
+        setError(err.message);
+      })
+  }
+
+  if (loaded) {
+    setLoaded(false);
+    if (data) {
+      console.log('登录成功！');
+    } else {
+      alert(error);
+    }
+  }
   return (
     <div className="page login-page">
       <div className="toggle-tabs">
@@ -19,19 +46,31 @@ const Login = () => {
       <div className="form">
         <div className="form-item">
           <div className="form-item-title">手机号</div>
-          <div className="form-item-content">
-            <input placeholder="请输入手机号码" />
-          </div>
+          <input
+            value={phone}
+            placeholder="请输入手机号码"
+            className="form-item-content"
+            onChange={(e) => setPhone(e.target.value)}
+          />
         </div>
         <div className="form-item">
         <div className="form-item-title">密码</div>
-        <div className="form-item-content">
-          <input type="password" placeholder="请输入密码" />
-        </div>
+        <input
+          value={password}
+          type="password"
+          placeholder="请输入密码"
+          className="form-item-content"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         </div>
       </div>
 
-      <div className="login-btn">登录</div>
+      <div
+        className="login-btn"
+        onClick={handleLogin}
+      >
+        登录
+      </div>
       <div className="notice-text">
         *登录即表示您赞同使用条款及隐私政策
       </div>

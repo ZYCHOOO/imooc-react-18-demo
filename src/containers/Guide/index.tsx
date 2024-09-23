@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss';
 import { useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 

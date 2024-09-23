@@ -1,4 +1,4 @@
-import './style.css'
+import './style.scss'
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,27 +19,33 @@ const Register = () => {
       <div className="form">
         <div className="form-item">
           <div className="form-item-title">用户名</div>
-          <div className="form-item-content">
-            <input placeholder="请输入用户名" />
-          </div>
+          <input
+            className="form-item-content"
+            placeholder="请输入用户名"
+          />
         </div>
         <div className="form-item">
           <div className="form-item-title">手机号</div>
-          <div className="form-item-content">
-            <input placeholder="请输入手机号码" />
-          </div>
+          <input
+            className="form-item-content"
+            placeholder="请输入手机号码"
+          />
         </div>
         <div className="form-item">
           <div className="form-item-title">密码</div>
-          <div className="form-item-content">
-            <input type="password" placeholder="请输入密码" />
-          </div>
+          <input
+            type="password"
+            placeholder="请输入密码"
+            className="form-item-content"
+          />
         </div>
         <div className="form-item">
           <div className="form-item-title">确认密码</div>
-          <div className="form-item-content">
-            <input type="password" placeholder="请输入确认密码" />
-          </div>
+          <input
+            type="password"
+            placeholder="请输入确认密码"
+            className="form-item-content"
+          />
         </div>
       </div>
 

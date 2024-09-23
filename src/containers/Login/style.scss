@@ -1,0 +1,69 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .toggle-tabs {
+    padding-top: .5rem;
+    display: flex;
+    flex-direction: row;
+    font-size: .18rem;
+    color: #242424;
+
+    .toggle-tab {
+      &.is-active {
+        color: #73D13D;
+      }
+      + .toggle-tab {
+        margin-left: .42rem;
+      }
+    }
+  }
+
+  .form {
+    margin-top: .77rem;
+    width: 100%;
+
+    .form-item {
+      display: flex;
+      padding: .16rem .3rem;
+      line-height: .24rem;
+      font-size: .16rem;
+
+      &-title {
+        margin-right: .42rem;
+        width: .48rem;
+        text-align-last: justify;
+      }
+
+      &-content {
+        flex: 1;
+        border: none;
+        outline: none;
+        color: #000;
+        
+        input::inputplaceholder {
+          color: #D9D9D9;
+        }
+      }
+    }
+  }
+
+  .login-btn {
+    margin-top: .6rem;
+    padding: .12rem 1.4rem .14rem;
+    border-radius: .25rem;
+    background: #73D13D;
+    box-shadow: 0 .06rem .06rem 0 #D9F7BE;
+    font-size: .16rem;
+    color: #FFF;
+  }
+
+  .notice-text {
+    margin-top: .94rem;
+    font-size: .16rem;
+    line-height: .24rem;
+    color: #CF1322;
+  }
+}
