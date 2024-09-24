@@ -1,6 +1,6 @@
 import './style.scss';
 import useRequest from '../../utils/useRequest';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type RequestType = {
@@ -14,32 +14,20 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   // 通过泛型传递给 useRequest 方法
-  const {data, error, loaded, request} = useRequest<RequestType>('/a.json', 'GET', {});
+  const { request } = useRequest<RequestType>('/a.json', 'GET', {});
   
   const handleRegister = useCallback(() => {
     navigate('/register');
   }, [navigate]);
 
   function handleLogin() {
-    request();
-  }
-
-  useEffect(() => {
-    if (data) {
-      console.log('登录成功！');
-    }
-    if (error) {
-      console.log(error);
-    }
-  }, [data, error])
-
-  if (loaded) {
-    if (data) {
-      console.log('登录成功！');
-    } else {
+    request().then((res) => {
+      console.log('get res data', res);
+    }).catch((error) => {
       alert(error);
-    }
+    })
   }
+
   return (
     <div className="page login-page">
       <div className="toggle-tabs">

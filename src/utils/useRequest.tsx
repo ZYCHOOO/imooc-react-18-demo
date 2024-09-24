@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-24 10:59:33
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-24 14:52:18
+ * @LastEditTime: 2024-09-24 15:28:06
  * @FilePath: /react-learn/huanlegou/src/utils/useRequest.tsx
  */
 import { useRef, useState } from 'react';
@@ -18,26 +18,27 @@ function useRequest<T>(url: string, method: Method, payload: AxiosRequestConfig)
     controllerRef.current.abort();
   }
 
-  const request = async() => {
+  const request = () => {
     // 清空上次请求状态
     setData(null);
     setError('')
     setLoaded(false);
 
     // 发送请求
-    try {
-      const res = await axios.request<T>({
-        url,
-        method,
-        signal: controllerRef.current.signal,
-        data: payload,
-      });
+    return axios.request<T>({
+      url,
+      method,
+      signal: controllerRef.current.signal,
+      data: payload
+    }).then((res) => {
       setData(res.data);
-    } catch(error: any) {
+      return res.data;
+    }).catch((error: any) => {
       setError(error.message || 'unknown request error');
-    } finally {
+      throw new Error(error);
+    }).finally(() => {
       setLoaded(true);
-    }
+    })
   }
   return {data, error, loaded, request, cancel};
 }
