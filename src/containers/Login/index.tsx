@@ -1,8 +1,8 @@
 import './style.scss';
 import useRequest from '../../utils/useRequest';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../../components/Modal';
+import Modal, { ModalRefType } from '../../components/Modal';
 
 type RequestType = {
   name: string;
@@ -11,37 +11,32 @@ type RequestType = {
 const Login = () => {
   const navigate = useNavigate();
 
+  const modalRef = useRef<ModalRefType>(null);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [showModal, setShowModal] = useState(false);
 
   // 通过泛型传递给 useRequest 方法
-  const { error, request } = useRequest<RequestType>('/a.json', 'GET', {});
+  const { request } = useRequest<RequestType>('/a.json', 'GET', {});
   
   const handleRegister = useCallback(() => {
     navigate('/register');
   }, [navigate]);
 
   function handleLogin() {
+    if (!phone) {
+      modalRef.current?.showModal('手机号不能为空！');
+      return;
+    }
+    if (!password) {
+      modalRef.current?.showModal('密码不能为空！');
+      return;
+    }
     request().then((res) => {
       console.log('get res data', res);
     }).catch((error) => {
-      // alert(error);
-      setShowModal(true);
+      modalRef.current?.showModal(error?.message);
     })
   }
-
-  useEffect(() => {
-    if (showModal) {
-      const timer = setTimeout(() => {
-        setShowModal(false);
-      }, 1500);
-  
-      return(() => {
-        clearTimeout(timer);
-      })
-    };
-  }, [showModal]);
   
   return (
     <div className="page login-page">
@@ -82,7 +77,8 @@ const Login = () => {
         *登录即表示您赞同使用条款及隐私政策
       </div>
 
-      { showModal ? <Modal >{ error }</Modal> : null }
+      {/* { showModal ? <Modal >{ error }</Modal> : null } */}
+      <Modal ref={modalRef} />
     </div>
   )
 }
