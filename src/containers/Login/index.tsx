@@ -1,7 +1,11 @@
 import './style.scss';
-import axios from 'axios';
-import { useState, useCallback } from 'react';
+import useRequest from '../../utils/useRequest';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+type RequestType = {
+  name: string;
+}
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,27 +13,27 @@ const Login = () => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
-  const [data, setData] = useState(null);
-  const [error, setError] = useState('');
-  const [loaded, setLoaded] = useState(false);
+  // 通过泛型传递给 useRequest 方法
+  const {data, error, loaded, request} = useRequest<RequestType>('/a.json', 'GET', {});
   
   const handleRegister = useCallback(() => {
     navigate('/register');
   }, [navigate]);
 
   function handleLogin() {
-    axios.get('/a.json')
-      .then((res) => {
-        setLoaded(true);
-        setData(res.data);
-      }).catch((err) => {
-        setLoaded(true);
-        setError(err.message);
-      })
+    request();
   }
 
+  useEffect(() => {
+    if (data) {
+      console.log('登录成功！');
+    }
+    if (error) {
+      console.log(error);
+    }
+  }, [data, error])
+
   if (loaded) {
-    setLoaded(false);
     if (data) {
       console.log('登录成功！');
     } else {
