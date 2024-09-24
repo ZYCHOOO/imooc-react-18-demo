@@ -1,7 +1,8 @@
 import './style.scss';
 import useRequest from '../../utils/useRequest';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../../components/Modal';
 
 type RequestType = {
   name: string;
@@ -12,9 +13,10 @@ const Login = () => {
 
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   // 通过泛型传递给 useRequest 方法
-  const { request } = useRequest<RequestType>('/a.json', 'GET', {});
+  const { error, request } = useRequest<RequestType>('/a.json', 'GET', {});
   
   const handleRegister = useCallback(() => {
     navigate('/register');
@@ -24,10 +26,23 @@ const Login = () => {
     request().then((res) => {
       console.log('get res data', res);
     }).catch((error) => {
-      alert(error);
+      // alert(error);
+      setShowModal(true);
     })
   }
 
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => {
+        setShowModal(false);
+      }, 1500);
+  
+      return(() => {
+        clearTimeout(timer);
+      })
+    };
+  }, [showModal]);
+  
   return (
     <div className="page login-page">
       <div className="toggle-tabs">
@@ -66,6 +81,8 @@ const Login = () => {
       <div className="notice-text">
         *登录即表示您赞同使用条款及隐私政策
       </div>
+
+      { showModal ? <Modal >{ error }</Modal> : null }
     </div>
   )
 }
