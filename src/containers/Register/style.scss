@@ -9,16 +9,17 @@
     display: flex;
     flex-direction: row;
     font-size: .18rem;
-    color: #242424;
 
     .toggle-tab {
+      margin-left: .42rem;
       &.is-active {
         color: #73D13D;
       }
+    }
 
-      + .toggle-tab {
-        margin-left: .42rem;
-      }
+    a {
+      text-decoration: none;
+      color: #242424;
     }
   }
 
