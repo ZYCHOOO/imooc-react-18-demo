@@ -1,3 +1,9 @@
+/*
+ * @Date: 2024-09-24 18:15:26
+ * @LastEditors: 曾逸超
+ * @LastEditTime: 2024-09-25 14:07:05
+ * @FilePath: /react-learn/huanlegou/src/containers/Login/index.tsx
+ */
 import './style.scss';
 import useRequest from '../../utils/useRequest';
 import { useState, useCallback, useRef } from 'react';
@@ -16,7 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   // 通过泛型传递给 useRequest 方法
-  const { request } = useRequest<RequestType>('/a.json', 'GET', {});
+  const { request } = useRequest<RequestType>();
   
   const handleRegister = useCallback(() => {
     navigate('/register');
@@ -31,7 +37,11 @@ const Login = () => {
       modalRef.current?.showModal('密码不能为空！');
       return;
     }
-    request().then((res) => {
+    request({
+      url: '/a.json',
+      method: 'GET',
+      params: { phone, password },
+    }).then((res) => {
       console.log('get res data', res);
     }).catch((error) => {
       modalRef.current?.showModal(error?.message);
