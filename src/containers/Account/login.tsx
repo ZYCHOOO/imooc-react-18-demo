@@ -1,13 +1,12 @@
 /*
  * @Date: 2024-09-24 18:15:26
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-25 17:15:32
- * @FilePath: /react-learn/huanlegou/src/containers/Login/index.tsx
+ * @LastEditTime: 2024-09-25 22:39:47
+ * @FilePath: /react-learn/huanlegou/src/containers/Account/login.tsx
  */
-import './style.scss';
+
 import useRequest from '../../utils/useRequest';
 import { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Modal, { ModalRefType } from '../../components/Modal';
 
 type RequestType = {
@@ -47,10 +46,6 @@ const Login = () => {
   
   return (
     <div className="page login-page">
-      <div className="toggle-tabs">
-        <div className="toggle-tab is-active">登录</div>
-        <Link to="/register">注册</Link>
-      </div>
 
       <div className="form">
         <div className="form-item">
@@ -75,7 +70,7 @@ const Login = () => {
       </div>
 
       <div
-        className="login-btn"
+        className="submit-btn"
         onClick={handleLogin}
       >
         登录

@@ -1,3 +1,9 @@
+/*
+ * @Date: 2024-09-23 10:18:35
+ * @LastEditors: 曾逸超
+ * @LastEditTime: 2024-09-25 22:31:22
+ * @FilePath: /react-learn/huanlegou/src/containers/Guide/index.tsx
+ */
 import './style.scss';
 import { useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +18,7 @@ const Guide = () => {
   // 处理路由跳转逻辑
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
-    navigate('/login');
+    navigate('/account/login');
   }, [navigate]);
 
   return (

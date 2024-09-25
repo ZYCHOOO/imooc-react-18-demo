@@ -1,11 +1,10 @@
 /*
  * @Date: 2024-09-23 10:18:35
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-25 17:33:29
- * @FilePath: /react-learn/huanlegou/src/containers/Register/index.tsx
+ * @LastEditTime: 2024-09-25 22:39:41
+ * @FilePath: /react-learn/huanlegou/src/containers/Account/register.tsx
  */
-import './style.scss'
-import { Link } from 'react-router-dom';
+
 import { useState, useRef } from 'react';
 import useRequest from '../../utils/useRequest';
 import Modal, { ModalRefType } from '../../components/Modal';
@@ -59,10 +58,6 @@ const Register = () => {
 
   return (
     <div className="page register-page">
-      <div className="toggle-tabs">
-        <Link to='/login'>登录</Link>
-        <div className="toggle-tab is-active">注册</div>
-      </div>
 
       <div className="form">
         <div className="form-item">
@@ -106,7 +101,7 @@ const Register = () => {
       </div>
 
       <div
-        className="register-btn"
+        className="submit-btn"
         onClick={handleRegister}
       >
         注册
