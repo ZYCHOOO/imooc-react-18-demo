@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-23 10:18:35
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-25 22:31:22
+ * @LastEditTime: 2024-09-26 09:26:09
  * @FilePath: /react-learn/huanlegou/src/containers/Guide/index.tsx
  */
 import './style.scss';
@@ -22,7 +22,7 @@ const Guide = () => {
   }, [navigate]);
 
   return (
-    <div ref={ref} className="page guide-page">
+    <div ref={ref} className="guide-page">
       <img
         src={require('../../images/guide-icon.png')}
         className="guide-icon"
