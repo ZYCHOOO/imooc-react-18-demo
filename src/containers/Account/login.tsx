@@ -1,14 +1,14 @@
 /*
  * @Date: 2024-09-24 18:15:26
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 13:47:20
+ * @LastEditTime: 2024-09-26 17:08:19
  * @FilePath: /react-learn/huanlegou/src/containers/Account/login.tsx
  */
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import useRequest from '../../utils/useRequest';
 import { useNavigate } from 'react-router-dom';
-import Modal, { ModalRefType } from '../../components/Modal';
+import { message } from '../../utils/message';
 
 type RequestType = {
   message: string
@@ -20,7 +20,6 @@ type RequestType = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const modalRef = useRef<ModalRefType>(null);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
@@ -29,11 +28,11 @@ const Login = () => {
 
   function handleLogin() {
     if (!phone) {
-      modalRef.current?.showModal('手机号不能为空！');
+      message('手机号不能为空！');
       return;
     }
     if (!password) {
-      modalRef.current?.showModal('密码不能为空！');
+      message('密码不能为空！');
       return;
     }
     request({
@@ -47,7 +46,7 @@ const Login = () => {
         navigate('/home');
       }
     }).catch((error) => {
-      modalRef.current?.showModal(error?.message);
+      message(error?.message);
     })
   }
   
@@ -85,9 +84,6 @@ const Login = () => {
       <div className="notice-text">
         *登录即表示您赞同使用条款及隐私政策
       </div>
-
-      {/* { showModal ? <Modal >{ error }</Modal> : null } */}
-      <Modal ref={modalRef} />
     </div>
   )
 }

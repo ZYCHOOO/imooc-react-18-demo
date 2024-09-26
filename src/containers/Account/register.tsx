@@ -5,9 +5,9 @@
  * @FilePath: /react-learn/huanlegou/src/containers/Account/register.tsx
  */
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import useRequest from '../../utils/useRequest';
-import Modal, { ModalRefType } from '../../components/Modal';
+import { message } from '../../utils/message';
 
 type RequestType = {
   message: string
@@ -16,7 +16,6 @@ type RequestType = {
 }
 
 const Register = () => {
-  const modalRef = useRef<ModalRefType>(null);
   const [userName, setUserName] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -26,23 +25,23 @@ const Register = () => {
 
   function handleRegister() {
     if (!userName) {
-      modalRef.current?.showModal('用户名不能为空！');
+      message('用户名不能为空！');
       return;
     }
     if (!phone) {
-      modalRef.current?.showModal('手机号不能为空！');
+      message('用户名不能为空！');
       return;
     }
     if (!password) {
-      modalRef.current?.showModal('密码不能为空！');
+      message('密码不能为空！');
       return;
     }
     if (password.length < 6) {
-      modalRef.current?.showModal('密码长度不能小于6！');
+      message('密码长度不能小于6！');
       return;
     }
     if (password !== confirmPassword) {
-      modalRef.current?.showModal('两次密码输入不一致！');
+      message('两次密码输入不一致！');
       return;
     }
     request({
@@ -52,7 +51,7 @@ const Register = () => {
     }).then((res) => {
       console.log('get res data', res);
     }).catch((error) => {
-      modalRef.current?.showModal(error?.message);
+      message(error?.message);
     })
   }
 
@@ -106,8 +105,6 @@ const Register = () => {
       >
         注册
       </div>
-
-      <Modal ref={modalRef} />
     </div>
   )
 }

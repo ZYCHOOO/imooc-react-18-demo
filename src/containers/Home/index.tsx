@@ -1,13 +1,14 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 15:43:44
+ * @LastEditTime: 2024-09-26 17:14:55
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
 import 'swiper/css';
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { message } from '../../utils/message';
 
 const locationHistory = localStorage.getItem('location');
 const location = locationHistory ? JSON.parse(locationHistory) : null;
@@ -16,8 +17,8 @@ const defaultRequestData = {
   url: '/api/home',
   method: 'POST',
   data: {
-    latitude: location.latitude || 37,
-    longitude: location.longitude || -122,
+    latitude: location ? location.latitude : 37,
+    longitude: location ? location.longitude : -122,
   }
 }
 
@@ -40,7 +41,7 @@ function Home() {
           data: { latitude, longitude },
         })
       }, (error: any) => {
-        console.log(error);
+        message(error?.message);
       }, { timeout: 3000 });
     }
   }, []);
