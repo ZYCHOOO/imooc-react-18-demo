@@ -18,7 +18,11 @@ const Guide = () => {
   // 处理路由跳转逻辑
   const navigate = useNavigate();
   const handleClick = useCallback(() => {
-    navigate('/account/login');
+    if (localStorage.getItem('token')) {
+      navigate('/home');
+    } else {
+      navigate('/account/login');
+    }
   }, [navigate]);
 
   return (

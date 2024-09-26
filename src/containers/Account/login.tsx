@@ -1,22 +1,25 @@
 /*
  * @Date: 2024-09-24 18:15:26
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-25 22:39:47
+ * @LastEditTime: 2024-09-26 10:25:58
  * @FilePath: /react-learn/huanlegou/src/containers/Account/login.tsx
  */
 
-import useRequest from '../../utils/useRequest';
 import { useState, useRef } from 'react';
+import useRequest from '../../utils/useRequest';
+import { useNavigate } from 'react-router-dom';
 import Modal, { ModalRefType } from '../../components/Modal';
 
 type RequestType = {
   message: string
   code: number
-  data: () => {}
+  data: {
+    token: string
+  }
 }
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const modalRef = useRef<ModalRefType>(null);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +41,11 @@ const Login = () => {
       method: 'POST',
       data: { phone, password },
     }).then((res) => {
-      console.log('get res data', res);
+      const { token } = res.data;
+      if (token) {
+        localStorage.setItem('token', token);
+        navigate('/home');
+      }
     }).catch((error) => {
       modalRef.current?.showModal(error?.message);
     })

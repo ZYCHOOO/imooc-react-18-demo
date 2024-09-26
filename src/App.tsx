@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-25 22:35:51
+ * @LastEditTime: 2024-09-26 10:23:52
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
@@ -15,6 +15,7 @@ import Guide from './containers/Guide';
 import Account from './containers/Account';
 import Login from './containers/Account/login';
 import Register from './containers/Account/register';
+import Home from './containers/Home';
 
 const router = createHashRouter([
   {
@@ -30,6 +31,9 @@ const router = createHashRouter([
       path: '/account/register',
       element: <Register />
     }]
+  }, {
+    path: '/home',
+    element: <Home />
   }
 ])
 
