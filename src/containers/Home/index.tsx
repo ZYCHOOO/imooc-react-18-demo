@@ -1,16 +1,49 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 14:45:17
+ * @LastEditTime: 2024-09-26 15:43:44
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
 import 'swiper/css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+const locationHistory = localStorage.getItem('location');
+const location = locationHistory ? JSON.parse(locationHistory) : null;
+
+const defaultRequestData = {
+  url: '/api/home',
+  method: 'POST',
+  data: {
+    latitude: location.latitude || 37,
+    longitude: location.longitude || -122,
+  }
+}
 
 function Home() {
   const [index, setIndex] = useState(1);
+  const [requestData, setRequestData] = useState(defaultRequestData);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        const { coords } = position;
+        const { latitude, longitude } = coords;
+        localStorage.setItem('location', JSON.stringify({
+          latitude,
+          longitude,
+        }))
+        setRequestData({
+          ...defaultRequestData,
+          data: { latitude, longitude },
+        })
+      }, (error: any) => {
+        console.log(error);
+      }, { timeout: 3000 });
+    }
+  }, []);
 
   return (
     <div className="home-page">
