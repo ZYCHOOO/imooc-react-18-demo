@@ -1,16 +1,16 @@
 /*
  * @Date: 2024-09-24 10:59:33
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 10:47:43
- * @FilePath: /react-learn/huanlegou/src/utils/useRequest.tsx
+ * @LastEditTime: 2024-09-26 17:28:00
+ * @FilePath: /react-learn/huanlegou/src/hooks/useRequest.tsx
  */
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function useRequest<T>(options: AxiosRequestConfig = {
-  url: '/', method: 'GET', data: {}, params: {}
-}) {
+const defaultOptions = { url: '/', method: 'GET', data: {}, params: {} };
+
+function useRequest<T>(options: AxiosRequestConfig = defaultOptions) {
   const [data, setData] = useState<T | null>(null!);
   const [error, setError] = useState('');
   const [loaded, setLoaded] = useState(false);
@@ -22,7 +22,7 @@ function useRequest<T>(options: AxiosRequestConfig = {
     controllerRef.current.abort();
   }
 
-  const request = (requestOptions?: AxiosRequestConfig) => {
+  const request = useCallback((requestOptions?: AxiosRequestConfig) => {
     // 清空上次请求状态
     setData(null);
     setError('')
@@ -53,7 +53,7 @@ function useRequest<T>(options: AxiosRequestConfig = {
     }).finally(() => {
       setLoaded(true);
     })
-  }
+  }, [navigate, options]);
   return {data, error, loaded, request, cancel};
 }
 

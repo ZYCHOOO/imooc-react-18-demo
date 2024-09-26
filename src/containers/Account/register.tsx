@@ -1,13 +1,14 @@
 /*
  * @Date: 2024-09-23 10:18:35
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-25 22:39:41
+ * @LastEditTime: 2024-09-26 17:23:47
  * @FilePath: /react-learn/huanlegou/src/containers/Account/register.tsx
  */
 
 import { useState } from 'react';
-import useRequest from '../../utils/useRequest';
+import useRequest from '../../hooks/useRequest';
 import { message } from '../../utils/message';
+import { useNavigate } from 'react-router-dom';
 
 type RequestType = {
   message: string
@@ -16,6 +17,7 @@ type RequestType = {
 }
 
 const Register = () => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
@@ -50,6 +52,7 @@ const Register = () => {
       data: { userName, phone, password }
     }).then((res) => {
       console.log('get res data', res);
+      navigate('/account/login');
     }).catch((error) => {
       message(error?.message);
     })

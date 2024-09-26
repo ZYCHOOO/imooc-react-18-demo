@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 17:14:55
+ * @LastEditTime: 2024-09-26 17:41:38
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -9,10 +9,12 @@ import 'swiper/css';
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { message } from '../../utils/message';
+import useRequest from '../../hooks/useRequest';
 
 const locationHistory = localStorage.getItem('location');
 const location = locationHistory ? JSON.parse(locationHistory) : null;
 
+// 默认请求参数
 const defaultRequestData = {
   url: '/api/home',
   method: 'POST',
@@ -22,12 +24,22 @@ const defaultRequestData = {
   }
 }
 
+type RequestType = {
+  message: string
+  data: {
+    address: string
+  }
+}
+
 function Home() {
   const [index, setIndex] = useState(1);
+  const [address, setAddress] = useState('');
   const [requestData, setRequestData] = useState(defaultRequestData);
+  const { request } = useRequest<RequestType>(requestData);
 
+  // 获取经纬度
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (navigator.geolocation && !location) {
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position);
         const { coords } = position;
@@ -46,13 +58,25 @@ function Home() {
     }
   }, []);
 
+  // 根据经纬度获取店
+  useEffect(() => {
+    request()
+      .then((res) => {
+        console.log(res.data);
+        const { address } = res.data;
+        setAddress(address);
+      }).catch((error: any) => {
+        message(error?.message);
+      });
+  }, [requestData, request])
+
   return (
     <div className="home-page">
       <div className="home-page-header">
         {/* 当前地址 */}
         <div className="location">
           <span className="iconfont">&#xe790;</span>
-          <span>南丰汇</span>
+          <span>{ address }</span>
         </div>
 
         {/* 搜索框 */}
