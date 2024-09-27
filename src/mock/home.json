@@ -1,6 +1,19 @@
 {
   "message": "success",
   "data": {
-    "address": "优果购(昌平店)"
+    "location": {
+      "id": "11034",
+      "address": "优果购(昌平店)"
+    },
+    "banners": [
+      {
+        "id": "1101",
+        "url": "http://statics.dell-lee.com/shopping/banner.png"
+      },
+      {
+        "id": "1102",
+        "url": "http://statics.dell-lee.com/shopping/banner.png"
+      }
+    ]
   }
 }
