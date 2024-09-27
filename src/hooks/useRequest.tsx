@@ -1,16 +1,19 @@
 /*
  * @Date: 2024-09-24 10:59:33
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-27 10:34:45
+ * @LastEditTime: 2024-09-27 13:49:08
  * @FilePath: /react-learn/huanlegou/src/hooks/useRequest.tsx
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { message } from '../utils/message';
 
 const defaultOptions = { url: '/', method: 'GET', data: {}, params: {} };
 
-function useRequest<T>(options: AxiosRequestConfig = defaultOptions) {
+function useRequest<T>(
+  options: AxiosRequestConfig & { manual?: boolean } = defaultOptions
+) {
   const [data, setData] = useState<T | null>(null!);
   const [error, setError] = useState('');
   const [loaded, setLoaded] = useState(false);
@@ -56,7 +59,11 @@ function useRequest<T>(options: AxiosRequestConfig = defaultOptions) {
   }, [navigate]);
 
   useEffect(() => {
-    request(options);
+    if (!options.manual) {
+      request(options).catch((error: any) => {
+        message(error?.message);
+      })
+    }
   }, [request, options]);
 
   return {data, error, loaded, request, cancel};

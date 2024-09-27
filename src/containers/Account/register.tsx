@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-23 10:18:35
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 17:23:47
+ * @LastEditTime: 2024-09-27 13:49:52
  * @FilePath: /react-learn/huanlegou/src/containers/Account/register.tsx
  */
 
@@ -9,12 +9,7 @@ import { useState } from 'react';
 import useRequest from '../../hooks/useRequest';
 import { message } from '../../utils/message';
 import { useNavigate } from 'react-router-dom';
-
-type RequestType = {
-  message: string
-  code: number
-  data: boolean
-}
+import { RegisterRequestType } from './types';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -23,7 +18,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { request } = useRequest<RequestType>();
+  const { request } = useRequest<RegisterRequestType>({ manual: true });
 
   function handleRegister() {
     if (!userName) {
@@ -51,7 +46,6 @@ const Register = () => {
       method: 'POST',
       data: { userName, phone, password }
     }).then((res) => {
-      console.log('get res data', res);
       navigate('/account/login');
     }).catch((error) => {
       message(error?.message);

@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-27 10:55:29
+ * @LastEditTime: 2024-09-27 13:41:40
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { message } from '../../utils/message';
 import useRequest from '../../hooks/useRequest';
+import { RequestType } from './types';
 
 const locationHistory = localStorage.getItem('location');
 const location = locationHistory ? JSON.parse(locationHistory) : null;
@@ -24,20 +25,6 @@ const defaultRequestData = {
   }
 }
 
-type RequestType = {
-  message: string;
-  data: {
-    location: {
-      id: string;
-      address: string;
-    };
-    banners: Array<{
-      id: string;
-      url: string;
-    }>
-  }
-}
-
 function Home() {
   const [index, setIndex] = useState(1);
   const [requestData, setRequestData] = useState(defaultRequestData);
@@ -47,7 +34,6 @@ function Home() {
   useEffect(() => {
     if (navigator.geolocation && !location) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
         const { coords } = position;
         const { latitude, longitude } = coords;
         localStorage.setItem('location', JSON.stringify({
@@ -99,9 +85,14 @@ function Home() {
             }
           </Swiper>
 
-          <div className="pagination">
-            <span>{index}/{data?.data.banners.length || 0}</span>
-          </div>
+          {
+            data?.data.banners.length ?
+            (
+              <div className="pagination">
+                <span>{index}/{data?.data.banners.length || 0}</span>
+              </div>
+            ) : null
+          }
         </div>
       </div>
     </div>

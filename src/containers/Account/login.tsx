@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-24 18:15:26
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 17:08:19
+ * @LastEditTime: 2024-09-27 13:48:12
  * @FilePath: /react-learn/huanlegou/src/containers/Account/login.tsx
  */
 
@@ -9,14 +9,7 @@ import { useState } from 'react';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate } from 'react-router-dom';
 import { message } from '../../utils/message';
-
-type RequestType = {
-  message: string
-  code: number
-  data: {
-    token: string
-  }
-}
+import { LoginRequestType } from './types';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   // 通过泛型传递给 useRequest 方法
-  const { request } = useRequest<RequestType>();
+  const { request } = useRequest<LoginRequestType>({ manual: true });
 
   function handleLogin() {
     if (!phone) {
