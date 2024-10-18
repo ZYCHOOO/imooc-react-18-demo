@@ -1,6 +1,7 @@
 .home-page {
+  background: #F5F9FA;
   &-header {
-    padding: 0 .14rem .16rem;
+    padding: 0 .14rem .38rem;
     background: #73D13D;
 
     .location {
@@ -60,6 +61,108 @@
         color: #FFF;
         transform: translate(-50%, -50%);
         z-index: 99;
+      }
+    }
+  }
+
+  .category {
+    position: relative;
+    margin-top: -.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .12rem;
+    padding: .16rem 0;
+    background: #FFF;
+    border-radius: .2rem .2rem 0 0;
+
+    &-item {
+      margin-bottom: .16rem;
+      flex: 0 0 25%;
+      text-align: center;
+
+      img {
+        width: .42re;
+        height: .36rem;
+      }
+    }
+  }
+
+  .card {
+    margin-top: .1rem;
+    padding: .14rem;
+    background: #FFF;
+    &-header {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: .08rem;
+        width: .16rem;
+        height: .21rem;
+      }
+      .title {
+        font-size: .2rem;
+        line-height: .23rem;
+        color: #242424;
+      }
+      .more {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        font-size: .12rem;
+        line-height: .18rem;
+        color: #242424;
+        .iconfont {
+          margin-left: .05rem;
+          font-size: .14rem;
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      margin-top: .19rem;
+      padding-bottom: .14rem;
+      overflow-x: scroll;
+      height: 1.82rem;
+      &-item {
+        display: flex;
+        width: 1.1rem;
+        flex-direction: column;
+        img {
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+        &-name {
+          margin: .06rem;
+          font-size: .12rem;
+          line-height: .18rem;
+          white-space: normal;
+          word-break: break-all;
+          color: #242424;
+        }
+        &-operate {
+          display: flex;
+          align-items: center;
+          .yen {
+            margin-right: .02rem;
+            font-size: .12rem;
+            line-height: .24rem;
+            color: #F81C00;
+          }
+          .price {
+            font-size: .2rem;
+            line-height: .24rem;
+            color: #F81C00;
+          }
+          .iconfont {
+            margin-left: auto;
+            font-size: .18rem;
+            color: #73D13D;
+          }
+        }
+        + &-item {
+          margin-left: .06rem;
+        }
       }
     }
   }

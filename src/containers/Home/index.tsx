@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-27 13:41:40
+ * @LastEditTime: 2024-10-18 19:16:22
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -93,6 +93,66 @@ function Home() {
               </div>
             ) : null
           }
+        </div>
+      </div>
+
+      <div className="category">
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-1.png" alt="新鲜蔬菜" />
+          <p>新鲜蔬菜</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-2.png" alt="鲜肉蛋禽" />
+          <p>鲜肉蛋禽</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-3.png" alt="时令水果" />
+          <p>时令水果</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-4.png" alt="乳品烘焙" />
+          <p>乳品烘焙</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-5.png" alt="粮油速食" />
+          <p>粮油速食</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-6.png" alt="休闲零食" />
+          <p>休闲零食</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-7.png" alt="家居百货" />
+          <p>家居百货</p>
+        </div>
+        <div className="category-item">
+          <img src="http://statics.dell-lee.com/shopping/category-8.png" alt="个护美妆" />
+          <p>个护美妆</p>
+        </div>
+      </div>
+
+      <div className="card">
+        <div className="card-header">
+          <div className="title">
+            <img src="http://statics.dell-lee.com/shopping/hot.png" alt="热点" />
+            <span>新品尝鲜</span>
+          </div>
+          <div className="more">
+            <span>更多</span>
+            <div className="iconfont">&#xe614;</div>
+          </div>
+          
+        </div>
+        <div className="card-content">
+          <div className="card-content-item">
+            <img src="" alt="" />
+            <span className="card-content-item-name">金锣 国产猪肉 去皮猪五花肉块 …</span>
+            <div className="card-content-item-operate">
+              <span className="yen">&yen;</span>
+              <span className="price">66.9</span>
+              <div className="iconfont">&#xe611;</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
