@@ -1,13 +1,14 @@
 /*
  * @Date: 2024-10-21 12:26:08
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-21 12:29:18
+ * @LastEditTime: 2024-10-21 13:26:51
  * @FilePath: /react-learn/huanlegou/src/containers/Home/components/Banner.tsx
  */
 import 'swiper/css';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { bannersType, locationType } from '../types';
+import { useNavigate } from 'react-router-dom';
 
 type bannerType = {
   location: locationType | undefined;
@@ -18,11 +19,16 @@ const Banner = (props: bannerType) => {
 
   const { banners, location } = props;
   const [index, setIndex] = useState(1);
+  const navigate = useNavigate();
+
+  const handleLocation = () => {
+    navigate('/nearby/bylocation');
+  }
 
   return (
     <div className="banner">
       {/* 当前地址 */}
-      <div className="location">
+      <div className="location" onClick={handleLocation}>
         <span className="iconfont">&#xe790;</span>
         <span>{ location?.address }</span>
       </div>

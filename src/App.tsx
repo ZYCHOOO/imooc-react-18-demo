@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-09-26 10:23:52
+ * @LastEditTime: 2024-10-21 13:24:21
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
@@ -16,6 +16,9 @@ import Account from './containers/Account';
 import Login from './containers/Account/login';
 import Register from './containers/Account/register';
 import Home from './containers/Home';
+import Nearby from './containers/Nearby';
+import ByLocation from './containers/Nearby/byLocation';
+import ByStore from './containers/Nearby/byStore';
 
 const router = createHashRouter([
   {
@@ -34,6 +37,16 @@ const router = createHashRouter([
   }, {
     path: '/home',
     element: <Home />
+  }, {
+    path: '/nearby',
+    element: <Nearby />,
+    children: [{
+      path: '/nearby/bylocation',
+      element: <ByLocation />,
+    }, {
+      path: '/nearby/bystore',
+      element: <ByStore />,
+    }]
   }
 ])
 
