@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-18 19:16:22
+ * @LastEditTime: 2024-10-21 12:20:21
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -96,41 +96,21 @@ function Home() {
         </div>
       </div>
 
+      {/* 品类 */}
       <div className="category">
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-1.png" alt="新鲜蔬菜" />
-          <p>新鲜蔬菜</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-2.png" alt="鲜肉蛋禽" />
-          <p>鲜肉蛋禽</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-3.png" alt="时令水果" />
-          <p>时令水果</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-4.png" alt="乳品烘焙" />
-          <p>乳品烘焙</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-5.png" alt="粮油速食" />
-          <p>粮油速食</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-6.png" alt="休闲零食" />
-          <p>休闲零食</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-7.png" alt="家居百货" />
-          <p>家居百货</p>
-        </div>
-        <div className="category-item">
-          <img src="http://statics.dell-lee.com/shopping/category-8.png" alt="个护美妆" />
-          <p>个护美妆</p>
-        </div>
+        {
+          (data?.data.categories || []).map((item) => {
+            return (
+              <div key={item.id} className="category-item">
+                <img src={item.url} alt={item.name} />
+                <p>{ item.name }</p>
+              </div>
+            )
+          })
+        }
       </div>
 
+      {/* 新品尝鲜 */}
       <div className="card">
         <div className="card-header">
           <div className="title">
@@ -144,15 +124,50 @@ function Home() {
           
         </div>
         <div className="card-content">
-          <div className="card-content-item">
-            <img src="" alt="" />
-            <span className="card-content-item-name">金锣 国产猪肉 去皮猪五花肉块 …</span>
-            <div className="card-content-item-operate">
-              <span className="yen">&yen;</span>
-              <span className="price">66.9</span>
-              <div className="iconfont">&#xe611;</div>
-            </div>
-          </div>
+          {
+            (data?.data.freshes || []).map((item) => {
+              return (
+                <div key={item.id} className="card-content-item">
+                  <img src={item.url} alt={item.name} />
+                  <span className="card-content-item-name">{item.name}</span>
+                  <div className="card-content-item-operate">
+                    <span className="yen">&yen;</span>
+                    <span className="price">{item.price}</span>
+                    <div className="iconfont">&#xe611;</div>
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+
+      {/* 限时折扣 */}
+
+      {/* 猜你喜欢 */}
+
+      {/* 底部 */}
+      <div className="bottom">
+        —— 我是有底线的 ——
+      </div>
+
+      {/* 底部 */}
+      <div className="docker">
+        <div className="docker-item">
+          <span className="iconfont">&#xe6f9;</span>
+          <span className='docker-item-title'>首页</span>
+        </div>
+        <div className="docker-item">
+          <span className="iconfont">&#xe603;</span>
+          <span className='docker-item-title'>分类</span>
+        </div>
+        <div className="docker-item">
+          <span className="iconfont">&#xe826;</span>
+          <span className='docker-item-title'>购物车</span>
+        </div>
+        <div className="docker-item">
+          <span className="iconfont">&#xe691; </span>
+          <span className='docker-item-title'>我的</span>
         </div>
       </div>
     </div>

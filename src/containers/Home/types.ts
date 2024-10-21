@@ -8,6 +8,17 @@ export type RequestType = {
     banners: Array<{
       id: string;
       url: string;
-    }>
+    }>,
+    categories: Array<{
+      id: string,
+      url: string,
+      name: string,
+    }>,
+    freshes: Array<{
+      id: string,
+      name: string,
+      url: string,
+      price: string,
+    }>,
   }
 }

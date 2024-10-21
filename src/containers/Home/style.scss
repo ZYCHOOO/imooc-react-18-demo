@@ -1,4 +1,6 @@
 .home-page {
+  padding-bottom: .79rem;
+  overflow-y: scroll;
   background: #F5F9FA;
   &-header {
     padding: 0 .14rem .38rem;
@@ -138,9 +140,15 @@
           line-height: .18rem;
           white-space: normal;
           word-break: break-all;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2; /* 定义显示的行数 */
+          overflow: hidden;
+          text-overflow: ellipsis;
           color: #242424;
         }
         &-operate {
+          margin: 0 .06rem;
           display: flex;
           align-items: center;
           .yen {
@@ -163,6 +171,40 @@
         + &-item {
           margin-left: .06rem;
         }
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: .5rem;
+    text-align: center;
+    font-size: .12rem;
+    color: #B3C1C4;
+  }
+
+  .docker {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+    border-top: .01rem solid #F5F9FA;
+    height: .49rem;
+    font-size: .12rem;
+    color: #B3C1C4;
+    z-index: 3;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+
+      .iconfont {
+        margin-bottom: .04rem;
+        font-size: .18rem;
       }
     }
   }
