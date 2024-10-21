@@ -2,7 +2,7 @@
   padding-bottom: .79rem;
   overflow-y: scroll;
   background: #F5F9FA;
-  &-header {
+  .banner {
     padding: 0 .14rem .38rem;
     background: #73D13D;
 
@@ -73,17 +73,18 @@
     display: flex;
     flex-wrap: wrap;
     font-size: .12rem;
-    padding: .16rem 0;
+    height: 1.9rem;
     background: #FFF;
     border-radius: .2rem .2rem 0 0;
 
     &-item {
-      margin-bottom: .16rem;
       flex: 0 0 25%;
       text-align: center;
 
       img {
-        width: .42re;
+        margin-top: .16rem;
+        margin-bottom: .13rem;
+        width: .42rem;
         height: .36rem;
       }
     }
