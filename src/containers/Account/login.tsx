@@ -9,7 +9,7 @@ import { useState } from 'react';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate } from 'react-router-dom';
 import { message } from '../../utils/message';
-import { LoginRequestType } from './types';
+import { LoginResponseType } from './types';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   // 通过泛型传递给 useRequest 方法
-  const { request } = useRequest<LoginRequestType>({ manual: true });
+  const { request } = useRequest<LoginResponseType>({ manual: true });
 
   function handleLogin() {
     if (!phone) {

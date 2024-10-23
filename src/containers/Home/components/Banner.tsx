@@ -1,18 +1,18 @@
 /*
  * @Date: 2024-10-21 12:26:08
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-21 13:26:51
+ * @LastEditTime: 2024-10-23 19:46:17
  * @FilePath: /react-learn/huanlegou/src/containers/Home/components/Banner.tsx
  */
 import 'swiper/css';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { bannersType, locationType } from '../types';
+import { BannersType, LocationType } from '../types';
 import { useNavigate } from 'react-router-dom';
 
 type bannerType = {
-  location: locationType | undefined;
-  banners: bannersType | undefined;
+  location: LocationType | undefined;
+  banners: BannersType | undefined;
 }
 
 const Banner = (props: bannerType) => {
@@ -25,6 +25,10 @@ const Banner = (props: bannerType) => {
     navigate('/nearby/bylocation');
   }
 
+  const handleSearchClick = () => {
+    navigate('/search');
+  }
+
   return (
     <div className="banner">
       {/* 当前地址 */}
@@ -34,7 +38,7 @@ const Banner = (props: bannerType) => {
       </div>
 
       {/* 搜索框 */}
-      <div className='search'>
+      <div className='search' onClick={handleSearchClick}>
         <span className="iconfont">&#xe610;</span>
         <span>请输入你需要搜索的内容</span>
       </div>

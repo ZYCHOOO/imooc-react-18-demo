@@ -1,36 +1,36 @@
 // 位置信息类型
-export type locationType = {
+export type LocationType = {
   id: string,
   address: string,
 }
 
 // 轮播类型
-export type bannersType = Array<{
+export type BannersType = Array<{
   id: string;
   imgUrl: string;
 }>
 
 // 类名类型
-export type categoriesType = Array<{
+export type CategoriesType = Array<{
   id: string,
   name: string,
   imgUrl: string,
 }>
 
 // 新品尝鲜类型
-export type cardType = Array<{
+export type CardType = Array<{
   id: string,
   name: string,
   price: string,
   imgUrl: string,
 }>
 
-export type RequestType = {
+export type ResponseType = {
   message: string;
   data: {
-    location: locationType,
-    banners: bannersType,
-    categories: categoriesType,
-    freshes: cardType,
+    location: LocationType,
+    banners: BannersType,
+    categories: CategoriesType,
+    freshes: CardType,
   }
 }

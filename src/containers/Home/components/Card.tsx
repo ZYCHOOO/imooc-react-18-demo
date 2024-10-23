@@ -1,8 +1,8 @@
-import { cardType } from '../types';
+import { CardType } from '../types';
 
 type cardPropsType = {
   title: string | undefined,
-  list: cardType | undefined,
+  list: CardType | undefined,
 }
 
 const Card = (props: cardPropsType) => {

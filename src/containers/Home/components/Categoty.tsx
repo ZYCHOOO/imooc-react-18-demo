@@ -1,13 +1,13 @@
 /*
  * @Date: 2024-10-21 12:26:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-21 12:56:49
+ * @LastEditTime: 2024-10-22 11:52:47
  * @FilePath: /react-learn/huanlegou/src/containers/Home/components/Categoty.tsx
  */
-import { categoriesType } from '../types';
+import { CategoriesType } from '../types';
 
 type categoryPropsType = {
-  categories: categoriesType | undefined
+  categories: CategoriesType | undefined
 };
 
 const Category = (props: categoryPropsType) => {

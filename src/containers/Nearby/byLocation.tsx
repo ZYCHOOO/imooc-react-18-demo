@@ -1,4 +1,9 @@
+import { useOutletContext } from "react-router-dom";
+
 const ByLocation = () => {
+  const keyword = useOutletContext();
+
+  console.log('test', keyword);
   return (
     <div className="location">
       <div className="location-title">当前地址</div>

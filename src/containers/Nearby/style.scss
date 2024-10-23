@@ -1,12 +1,20 @@
 .nearby-page {
   &-header {
+    position: relative;
     padding: .08rem 0 .15rem 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     background-color: #FFF;
     font-size: .18rem;
     line-height: .21rem;
     color: #242424;
+
+    .iconfont {
+      position: absolute;
+      left: .1rem;
+      color: #242424;
+    }
   }
 
   .toggle-tabs {

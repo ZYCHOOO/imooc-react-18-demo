@@ -1,34 +1,39 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-21 12:48:19
+ * @LastEditTime: 2024-10-23 12:15:08
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
 import { useState, useEffect } from 'react';
 import { message } from '../../utils/message';
 import useRequest from '../../hooks/useRequest';
-import { RequestType } from './types';
+import { ResponseType } from './types';
 import Category from './components/Categoty';
 import Card from './components/Card';
 import Banner from './components/Banner';
-
-const locationHistory = localStorage.getItem('location');
-const location = locationHistory ? JSON.parse(locationHistory) : null;
 
 // 默认请求参数
 const defaultRequestData = {
   url: '/api/home',
   method: 'POST',
   data: {
-    latitude: location ? location.latitude : 37,
-    longitude: location ? location.longitude : -122,
+    latitude: 37,
+    longitude: -122,
   }
 }
 
 function Home() {
+  const locationHistory = localStorage.getItem('location');
+  const location = locationHistory ? JSON.parse(locationHistory) : null;
+  
+  if (location) {
+    defaultRequestData.data.longitude = location.longitude;
+    defaultRequestData.data.latitude = location.latitude;
+  }
+
   const [requestData, setRequestData] = useState(defaultRequestData);
-  const { data } = useRequest<RequestType>(requestData);
+  const { data } = useRequest<ResponseType>(requestData);
 
   // 获取经纬度
   useEffect(() => {
@@ -46,9 +51,9 @@ function Home() {
         })
       }, (error: any) => {
         message(error?.message);
-      }, { timeout: 3000 });
+      }, { timeout: 30000 });
     }
-  }, []);
+  }, [location]);
 
   return (
     <div className="home-page">
