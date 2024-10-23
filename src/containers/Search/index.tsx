@@ -2,7 +2,7 @@
 /*
 * @Date: 2024-10-23 12:05:11
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-23 22:26:27
+ * @LastEditTime: 2024-10-23 22:36:19
  * @FilePath: /react-learn/huanlegou/src/containers/Search/index.tsx
 */
 import './style.scss';
@@ -27,11 +27,19 @@ function Search() {
 
   const handleSearch = (key: string) => {
     if (key === 'Enter') {
-      const newHistoryList = [keyword, ...historyList]
+      const newHistoryList = [keyword, ...historyList];
+      if (newHistoryList.length > 10) {
+        newHistoryList.length = 10;
+      }
       setHistoryList(newHistoryList);
       setKeyword('');
       localStorage.setItem('search-history', JSON.stringify(newHistoryList))
     }
+  }
+
+  const clearHistoryClick = () => {
+    setHistoryList([]);
+    localStorage.removeItem('search-history');
   }
 
   return (
@@ -61,7 +69,7 @@ function Search() {
               <span>历史搜索</span>
               <div
                 className="iconfont close-icon"
-                onClick={() => setHistoryList([])}
+                onClick={clearHistoryClick}
               >&#xe62b;</div>
             </div>
             <ul className="history-list">
