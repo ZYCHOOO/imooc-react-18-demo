@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-23 12:14:47
+ * @LastEditTime: 2024-10-24 12:45:29
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
@@ -20,6 +20,7 @@ import Nearby from './containers/Nearby';
 import ByLocation from './containers/Nearby/byLocation';
 import ByStore from './containers/Nearby/byStore';
 import Search from './containers/Search';
+import SearchList from './containers/SearchList';
 
 const router = createHashRouter([
   {
@@ -51,6 +52,9 @@ const router = createHashRouter([
   }, {
     path: '/search',
     element: <Search />
+  }, {
+    path: '/searchlist',
+    element: <SearchList />
   }
 ])
 

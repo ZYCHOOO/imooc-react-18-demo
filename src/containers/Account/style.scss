@@ -1,4 +1,6 @@
 .account-page {
+  align-items: center;
+  justify-content: center;
   .toggle-tabs {
     padding-top: .5rem;
     display: flex;
@@ -49,7 +51,7 @@
   }
 
   .submit-btn {
-    margin-top: .6rem;
+    margin: .6rem .3rem 0;
     padding: .12rem 1.4rem .14rem;
     border-radius: .25rem;
     background: #73D13D;
@@ -59,7 +61,7 @@
   }
 
   .notice-text {
-    margin-top: .94rem;
+    margin: .94rem .46rem 0;
     font-size: .16rem;
     line-height: .24rem;
     color: #CF1322;
