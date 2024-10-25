@@ -2,7 +2,7 @@
 /*
 * @Date: 2024-10-23 12:05:11
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-25 13:01:05
+ * @LastEditTime: 2024-10-25 15:31:45
  * @FilePath: /react-learn/huanlegou/src/containers/Search/index.tsx
 */
 import './style.scss';
@@ -18,7 +18,7 @@ const defaultRequestData = {
 }
 
 function Search() {
-  const params = useParams();
+  const params = useParams<{shopId: string}>();
   const navigate = useNavigate();
   const searchHistory = localStorage.getItem('search-history');
   const searchHistoryList: string[] = searchHistory ? JSON.parse(searchHistory) : [];

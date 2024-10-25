@@ -1,25 +1,23 @@
 {
   "message": "success",
-  "data": {
-    "store": [
-      {
-        "id": "10011",
-        "name": "优果购",
-        "phone": "17194091107",
-        "address": "北京市昌平区南邵镇四合园59号",
-        "distance": "799m",
-        "latitude": "37.7239",
-        "longitude": "-122.8349"
-      },
-      {
-        "id": "10012",
-        "name": "喜梅蔬菜店",
-        "phone": "18500331766",
-        "address": "北京市昌平区南邵镇风景丽苑69号",
-        "distance": "1.1km",
-        "latitude": "37.7258",
-        "longitude": "-122.8348"
-      }
-    ]
-  }
+  "data": [
+    {
+      "id": "10011",
+      "name": "优果购",
+      "phone": "17194091107",
+      "address": "北京市昌平区南邵镇四合园59号",
+      "distance": "799m",
+      "latitude": "37.7239",
+      "longitude": "-122.8349"
+    },
+    {
+      "id": "10012",
+      "name": "喜梅蔬菜店",
+      "phone": "18500331766",
+      "address": "北京市昌平区南邵镇风景丽苑69号",
+      "distance": "1.1km",
+      "latitude": "37.7258",
+      "longitude": "-122.8348"
+    }
+  ]
 }

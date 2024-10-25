@@ -1,0 +1,40 @@
+{
+  "message": "success",
+  "data": [
+    {
+      "id": "88391",
+      "imgUrl": "http://statics.dell-lee.com/shopping/list-1.png",
+      "title": "普罗旺斯西红柿 陕西泾阳生吃沙瓤西红柿农家自种时令生鲜",
+      "price": 49.8,
+      "sales": 388
+    },
+    {
+      "id": "88392",
+      "imgUrl": "http://statics.dell-lee.com/shopping/list-2.png",
+      "title": "山东西红柿自然熟番茄新鲜水果蔬菜健康轻食 严选5斤装",
+      "price": 27.9,
+      "sales": 982
+    },
+    {
+      "id": "88393",
+      "imgUrl": "http://statics.dell-lee.com/shopping/list-3.png",
+      "title": "山东海阳普罗旺斯西红柿自然熟沙瓢番茄新鲜水果蔬菜健康轻食",
+      "price": 39.9,
+      "sales": 546
+    },
+    {
+      "id": "88394",
+      "imgUrl": "http://statics.dell-lee.com/shopping/list-4.png",
+      "title": "千禧圣女果 小西红柿 樱桃番茄 严选500g 装生鲜 新鲜水果",
+      "price": 29.9,
+      "sales": 368
+    },
+    {
+      "id": "88395",
+      "imgUrl": "http://statics.dell-lee.com/shopping/list-5.png",
+      "title": "海阳普罗旺斯西红柿 沙瓤番茄净重4.5斤  新鲜水果蔬菜 精选装5斤",
+      "price": 39.9,
+      "sales": 598
+    }
+  ]
+}

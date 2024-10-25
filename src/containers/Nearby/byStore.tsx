@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-21 13:19:05
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-22 22:29:53
+ * @LastEditTime: 2024-10-25 14:53:39
  * @FilePath: /react-learn/huanlegou/src/containers/Nearby/byStore.tsx
  */
 import { useNavigate, useOutletContext } from "react-router-dom";
@@ -26,7 +26,7 @@ const ByStore = () => {
 
   const { data } = useRequest<ResponseType>(defaultRequestData);
 
-  const list = (data?.data.store || []).filter((item) => item.name.includes(keyword));
+  const list = (data?.data || []).filter((item) => item.name.includes(keyword));
 
   const handleStoreClick = (longitude: string, latitude: string) => {
     localStorage.setItem('location', JSON.stringify({
