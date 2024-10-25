@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-21 12:26:08
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-23 19:46:17
+ * @LastEditTime: 2024-10-24 22:07:15
  * @FilePath: /react-learn/huanlegou/src/containers/Home/components/Banner.tsx
  */
 import 'swiper/css';
@@ -26,7 +26,7 @@ const Banner = (props: bannerType) => {
   }
 
   const handleSearchClick = () => {
-    navigate('/search');
+    navigate(`/search/${location?.id}`);
   }
 
   return (

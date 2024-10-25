@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-24 12:45:29
+ * @LastEditTime: 2024-10-24 22:15:55
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
@@ -50,10 +50,10 @@ const router = createHashRouter([
       element: <ByStore />,
     }]
   }, {
-    path: '/search',
+    path: '/search/:shopId',
     element: <Search />
   }, {
-    path: '/searchlist',
+    path: '/searchlist/:shopId/:keyword',
     element: <SearchList />
   }
 ])

@@ -2,41 +2,62 @@
 /*
 * @Date: 2024-10-23 12:05:11
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-23 22:36:19
+ * @LastEditTime: 2024-10-25 13:01:05
  * @FilePath: /react-learn/huanlegou/src/containers/Search/index.tsx
 */
 import './style.scss';
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useRequest from '../../hooks/useRequest';
 import { ResponseType } from './types';
 
 const defaultRequestData = {
   url: '/api/search/hot',
   method: 'POST',
+  params: { shopId: '' },
 }
 
 function Search() {
+  const params = useParams();
+  const navigate = useNavigate();
   const searchHistory = localStorage.getItem('search-history');
   const searchHistoryList: string[] = searchHistory ? JSON.parse(searchHistory) : [];
   const [keyword, setKeyword] = useState('');
   const [historyList, setHistoryList] = useState(searchHistoryList);
 
+  if (params.shopId) {
+    defaultRequestData.params.shopId = params.shopId;
+  }
+
   const { data } = useRequest<ResponseType>(defaultRequestData);
   const hotSearchList = data?.data || [];
 
+  // 处理input输入框搜索
   const handleSearch = (key: string) => {
     if (key === 'Enter') {
-      const newHistoryList = [keyword, ...historyList];
-      if (newHistoryList.length > 10) {
-        newHistoryList.length = 10;
-      }
-      setHistoryList(newHistoryList);
-      setKeyword('');
-      localStorage.setItem('search-history', JSON.stringify(newHistoryList))
+      handleKeyword(keyword);
     }
   }
 
+  // 搜索内容传值与缓存处理
+  const handleKeyword = (keywordStr: string) => {
+    const historyIndex = historyList.findIndex((item) => item === keywordStr);
+    let newHistoryList: string[] = [...historyList];
+    if (historyIndex > -1) {
+      newHistoryList.splice(historyIndex, 1);
+    }
+    newHistoryList.unshift(keywordStr);
+    if (newHistoryList.length > 10) {
+      newHistoryList.length = 10;
+    }
+    setHistoryList(newHistoryList);
+    setKeyword('');
+    localStorage.setItem('search-history', JSON.stringify(newHistoryList));
+
+    navigate(`/searchlist/${params.shopId}/${keywordStr}`);
+  }
+
+  // 清除历史搜索
   const clearHistoryClick = () => {
     setHistoryList([]);
     localStorage.removeItem('search-history');
@@ -76,7 +97,13 @@ function Search() {
               {
                 (historyList || []).map((item, index) => {
                   return (
-                    <li key={index} className="history-list-item">{item}</li>
+                    <li
+                      key={index}
+                      className="history-list-item"
+                      onClick={() => {handleKeyword(item)}}
+                    >
+                      {item}
+                    </li>
                   )
                 })
               }
@@ -96,6 +123,7 @@ function Search() {
                   <li
                     key={item.id}
                     className="hot-list-item"
+                    onClick={() => {handleKeyword(item.name)}}
                   >
                     {item.name}
                   </li>
