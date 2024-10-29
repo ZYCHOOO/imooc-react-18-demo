@@ -75,9 +75,14 @@
     width: 100%;
     box-sizing: border-box;
 
+    a {
+      text-decoration: none;
+    }
+
     .list-item {
       display: flex;
       align-items: center;
+      margin-bottom: .1rem;
       padding: .1rem;
       height: 1.28rem;
       width: 100%;
@@ -126,14 +131,10 @@
         line-height: .16rem;
         color: #B1B1B1;
       }
-
-      + .list-item {
-        margin-top: .1rem;
-      }
     }
 
     .bottom {
-      margin-top: .5rem;
+      margin: .4rem 0 .25rem;
       text-align: center;
       font-size: .12rem;
       color: #B3C1C4;
