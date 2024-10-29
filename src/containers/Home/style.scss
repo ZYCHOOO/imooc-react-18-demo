@@ -207,6 +207,10 @@
         margin-bottom: .04rem;
         font-size: .18rem;
       }
+
+      &.is-active {
+        color: #52C41A;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-28 18:45:26
+ * @LastEditTime: 2024-10-29 12:58:36
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
@@ -22,6 +22,7 @@ import ByStore from './containers/Nearby/byStore';
 import Search from './containers/Search';
 import SearchList from './containers/SearchList';
 import Detail from './containers/Detail';
+import Category from './containers/Category';
 
 const router = createHashRouter([
   {
@@ -59,6 +60,9 @@ const router = createHashRouter([
   }, {
     path: '/detail/:id',
     element: <Detail />
+  }, {
+    path: '/category',
+    element: <Category />
   }
 ])
 

@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-23 12:15:08
+ * @LastEditTime: 2024-10-29 13:01:50
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -77,7 +77,7 @@ function Home() {
 
       {/* 底部 */}
       <div className="docker">
-        <div className="docker-item">
+        <div className="docker-item is-active">
           <span className="iconfont">&#xe6f9;</span>
           <span className='docker-item-title'>首页</span>
         </div>
