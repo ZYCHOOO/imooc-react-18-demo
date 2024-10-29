@@ -1,0 +1,47 @@
+{
+  "message": "success",
+  "data": [
+    {
+      "id": "88391",
+      "imgUrl": "http://statics.dell-lee.com/shopping/category-list-1.png",
+      "name": "华都食品 鸡翅中 1000g/",
+      "price": 59.9,
+      "sales": 156
+    },
+    {
+      "id": "88392",
+      "imgUrl": "http://statics.dell-lee.com/shopping/category-list-2.png",
+      "name": "金锣 国产猪肉 去皮五花肉",
+      "price": 66.9,
+      "sales": 128
+    },
+    {
+      "id": "88393",
+      "imgUrl": "http://statics.dell-lee.com/shopping/category-list-3.png",
+      "name": "城市厨房 澳洲牛肉卷肥牛",
+      "price": 39,
+      "sales": 168
+    },
+    {
+      "id": "88394",
+      "imgUrl": "http://statics.dell-lee.com/shopping/category-list-4.png",
+      "name": "四川浦江金果奇异果 黄…",
+      "price": 49.9,
+      "sales": 68
+    },
+    {
+      "id": "88395",
+      "imgUrl": "http://statics.dell-lee.com/shopping/category-list-5.png",
+      "name": "潍坊水果萝卜10斤水果萝…",
+      "price": 14.9,
+      "sales": 68
+    },
+    {
+      "id": "88396",
+      "imgUrl": "http://statics.dell-lee.com/shopping/category-list-6.png",
+      "name": "品珍鲜活 生鲜鱼类三去净…",
+      "price": 39.9,
+      "sales": 88
+    }
+  ]
+}

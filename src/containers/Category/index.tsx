@@ -1,17 +1,50 @@
 /*
  * @Date: 2024-10-29 12:56:49
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 16:58:21
+ * @LastEditTime: 2024-10-29 18:37:34
  * @FilePath: /react-learn/huanlegou/src/containers/Category/index.tsx
  */
 
-import { useState } from 'react';
 import './style.scss';
+import { useEffect, useState } from 'react';
+import useRequest from '../../hooks/useRequest';
 import { useNavigate } from "react-router-dom";
+import { message } from '../../utils/message';
+import { CategoryTagResponseType, CategoryProductListType } from './types';
+
+const defaultRequstData = {
+  url: '/api/category/productlist',
+  method: 'POST',
+  data: {
+    keyword: '',
+    category: '',
+    tag: '',
+  }
+}
+
 
 function Category () {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
+  const [categories, setCategories] = useState<Array<{id: string, name: string}>>([]);
+  const [tags, setTags] = useState<string[]>([]);
+
+  const { request } = useRequest<CategoryTagResponseType>({ manual: true });
+  const { data } = useRequest<CategoryProductListType>(defaultRequstData);
+  const productList = data?.data || [];
+
+  useEffect(() => {
+    request({
+      url: '/api/categoryandtag',
+      method: 'GET'
+    }).then((res) => {
+      const data = res.data;
+      setCategories(data.category || []);
+      setTags(data.tag || []);
+    }).catch((error) => {
+      message(error?.message);
+    })
+  }, [request]);
 
   return (
     <div className="page category-page">
@@ -37,112 +70,50 @@ function Category () {
 
       <div className="category-page-content">
         <div className="category">
-          <div className="category-item is-active">精选商品</div>
-          <div className="category-item">单品优惠</div>
-          <div className="category-item">新鲜水果</div>
-          <div className="category-item">时令蔬菜</div>
-          <div className="category-item">肉蛋家禽</div>
-          <div className="category-item">水产海鲜</div>
-          <div className="category-item">牛奶面包</div>
-          <div className="category-item">冷冻冷藏</div>
+          <div className="category-item is-active">全部商品</div>
+          {
+            categories.map((category) => (
+              <div
+                key={category.id}
+                className="category-item"
+              >
+                {category.name}
+              </div>
+            ))
+          }
         </div>
         <div className="category-content">
-          <div className="tabs">
-            <div className="tab-item is-active">全部</div>
-            <div className="tab-item">果蔬</div>
-            <div className="tab-item">肉蛋家禽</div>
-            <div className="tab-item">海鲜</div>
-            <div className="tab-item">全部</div>
-            <div className="tab-item">果蔬</div>
-            <div className="tab-item">肉蛋家禽</div>
-            <div className="tab-item">海鲜</div>
+          <div className="tags">
+            <div className="tag-item is-active">全部</div>
+            {
+              tags.map((tag, index) => (
+                <div
+                  key={index}
+                  className="tag-item"
+                >
+                  {tag}
+                </div>
+              ))
+            }
           </div>
           <div className="list">
             <div className="list-total">精选商品（50）</div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
+            {
+              productList.map((product) => (
+                <div key={product.id} className="list-item">
+                  <img src={product.imgUrl} alt="" />
+                  <div className="list-item-content">
+                    <div className="list-item-title">{product.name}</div>
+                    <div className="list-item-sales">月售{product.sales}</div>
+                    <div className="list-item-price">
+                      <span className="yen">&yen;</span>
+                      <span>{product.price}</span>
+                    </div>
+                    <div className="list-item-btn">购买</div>
+                  </div>
                 </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
-                </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
-                </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
-                </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
-                </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
-                </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
-            <div className="list-item">
-              <img src="http://statics.dell-lee.com/shopping/category-list-1.png" alt="" />
-              <div className="list-item-content">
-                <div className="list-item-title">华都食品 鸡翅中 1000g/ ...</div>
-                <div className="list-item-sales">月售156</div>
-                <div className="list-item-price">
-                  <span className="yen">&yen;</span>
-                  <span>59.9</span>
-                </div>
-                <div className="list-item-btn">购买</div>
-              </div>
-            </div>
+              ))
+            }
           </div>
         </div>
       </div>

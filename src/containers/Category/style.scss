@@ -81,13 +81,13 @@
         flex: 1;
         overflow: hidden;
 
-        .tabs {
+        .tags {
           display: flex;
           overflow: scroll;
           white-space: nowrap;
           padding-bottom: .17rem;
 
-          .tab-item {
+          .tag-item {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -104,7 +104,7 @@
               color: #52C41A;
             }
 
-            + .tab-item {
+            + .tag-item {
               margin-left: .1rem;
             }
           }
