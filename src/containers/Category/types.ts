@@ -9,13 +9,15 @@ export type CategoryTagResponseType = {
   }
 }
 
+export type ProductType = {
+  id: string;
+  imgUrl: string;
+  name: string;
+  price: number;
+  sales: number;
+}
+
 export type CategoryProductListType = {
   message: string;
-  data: Array<{
-    id: string;
-    imgUrl: string;
-    name: string;
-    price: number;
-    sales: number;
-  }>
+  data: Array<ProductType>
 }

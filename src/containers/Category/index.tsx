@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-29 12:56:49
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 22:24:07
+ * @LastEditTime: 2024-10-30 11:36:42
  * @FilePath: /react-learn/huanlegou/src/containers/Category/index.tsx
  */
 
@@ -10,56 +10,29 @@ import { useEffect, useState } from 'react';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate } from "react-router-dom";
 import { message } from '../../utils/message';
-import { CategoryTagResponseType, CategoryProductListType } from './types';
+import { CategoryTagResponseType, CategoryProductListType, ProductType } from './types';
 
 function Category () {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
   const [currentTag, setCurrentTag] = useState('');
   const [currentCategory, setCurrentCategory] = useState('');
+  const [productList, setProductList] = useState<Array<ProductType>>([]);
   const [categories, setCategories] = useState<Array<{id: string, name: string}>>([]);
   const [tags, setTags] = useState<string[]>([]);
-  const [requestData, setRequestData] = useState({
-    url: '/api/category/productlist',
-    method: 'POST',
-    data: {
-      keyword: '',
-      category: '',
-      tag: '',
-    }
-  });
 
-  const { request } = useRequest<CategoryTagResponseType>({ manual: true });
-  const { data } = useRequest<CategoryProductListType>(requestData);
-  const productList = data?.data || [];
+  const { request: tagRequest } = useRequest<CategoryTagResponseType>({ manual: true });
+  const { request: productRequest } = useRequest<CategoryProductListType>({ manual: true });
 
-  // 侧边切换
-  const handleCategoryClick = (category: string) => {
-    setCurrentCategory(category);
-    const newRequestData = {...requestData};
-    newRequestData.data.category = category;
-    setRequestData(newRequestData);
-  }
-
-  // 标签切换
-  const handleTagClick = (tag: string) => {
-    setCurrentTag(tag);
-    const newRequestData = {...requestData};
-    newRequestData.data.tag = tag;
-    setRequestData(newRequestData);
-  }
-
-  // 输入框值变化处理
-  const handleKeywordChange = (key: string) => {
+  const handleKeywordChange = (key: string, target: any) => {
     if (key === 'Enter') {
-      const newRequestData = {...requestData};
-      newRequestData.data.keyword = keyword;
-      setRequestData(newRequestData);
+      console.log(target.value);
+      setKeyword(target.value);
     }
   }
 
   useEffect(() => {
-    request({
+    tagRequest({
       url: '/api/categoryandtag',
       method: 'GET'
     }).then((res) => {
@@ -69,7 +42,22 @@ function Category () {
     }).catch((error) => {
       message(error?.message);
     })
-  }, [request]);
+  }, [tagRequest]);
+
+  useEffect(() => {
+    productRequest({
+      url: '/api/category/productlist',
+      method: 'POST',
+      data: {
+        keyword,
+        category: currentCategory,
+        tag: currentTag
+      }
+    }).then((res) => {
+      const productList = res.data;
+      setProductList(productList);
+    })
+  }, [keyword, currentCategory, currentTag, productRequest])
 
   return (
     <div className="page category-page">
@@ -86,11 +74,9 @@ function Category () {
       <div className="search">
         <div className="iconfont search-icon">&#xe610;</div>
         <input
-          value={keyword}
           className="search-input"
           placeholder="请输入商品名称"
-          onChange={(e) => setKeyword(e.target.value)}
-          onKeyDown={(e) => handleKeywordChange(e.key)}
+          onKeyDown={(e) => handleKeywordChange(e.key, e.target)}
         />
       </div>
 
@@ -98,7 +84,7 @@ function Category () {
         <div className="category">
           <div
             className={currentCategory === '' ? 'category-item is-active' : 'category-item'}
-            onClick={() => handleCategoryClick('')}
+            onClick={() => setCurrentCategory('')}
           >
             全部商品
           </div>
@@ -107,7 +93,7 @@ function Category () {
               <div
                 key={category.id}
                 className={currentCategory === category.id ? 'category-item is-active' : 'category-item'}
-                onClick={() => handleCategoryClick(category.id)}
+                onClick={() => setCurrentCategory(category.id)}
               >
                 {category.name}
               </div>
@@ -118,7 +104,7 @@ function Category () {
           <div className="tags">
             <div
               className={currentTag === '' ? 'tag-item is-active' : 'tag-item'}
-              onClick={() => handleTagClick('')}
+              onClick={() => setCurrentTag('')}
             >
               全部
             </div>
@@ -127,7 +113,7 @@ function Category () {
                 <div
                   key={index}
                   className={currentTag === tag ? 'tag-item is-active' : 'tag-item'}
-                  onClick={() => handleTagClick(tag)}
+                  onClick={() => setCurrentTag(tag)}
                 >
                   {tag}
                 </div>
