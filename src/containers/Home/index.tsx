@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-31 10:23:13
+ * @LastEditTime: 2024-10-31 12:48:49
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -76,7 +76,7 @@ function Home() {
         —— 我是有底线的 ——
       </div>
 
-      <Docker />
+      <Docker activeName="home" />
     </div>
   )
 }

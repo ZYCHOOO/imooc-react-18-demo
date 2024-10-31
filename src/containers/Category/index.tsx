@@ -143,7 +143,7 @@ function Category () {
         </div>
       </div>
 
-      <Docker />
+      <Docker activeName="category" />
     </div>
   )
 }
