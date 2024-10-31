@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-29 12:56:49
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-30 11:36:42
+ * @LastEditTime: 2024-10-31 10:21:54
  * @FilePath: /react-learn/huanlegou/src/containers/Category/index.tsx
  */
 
@@ -11,6 +11,7 @@ import useRequest from '../../hooks/useRequest';
 import { useNavigate } from "react-router-dom";
 import { message } from '../../utils/message';
 import { CategoryTagResponseType, CategoryProductListType, ProductType } from './types';
+import Docker from '../../components/Docker';
 
 function Category () {
   const navigate = useNavigate();
@@ -142,25 +143,7 @@ function Category () {
         </div>
       </div>
 
-      {/* 底部 */}
-      <div className="docker">
-        <div className="docker-item">
-          <span className="iconfont">&#xe6f9;</span>
-          <span className='docker-item-title'>首页</span>
-        </div>
-        <div className="docker-item is-active">
-          <span className="iconfont">&#xe603;</span>
-          <span className='docker-item-title'>分类</span>
-        </div>
-        <div className="docker-item">
-          <span className="iconfont">&#xe826;</span>
-          <span className='docker-item-title'>购物车</span>
-        </div>
-        <div className="docker-item">
-          <span className="iconfont">&#xe691; </span>
-          <span className='docker-item-title'>我的</span>
-        </div>
-      </div>
+      <Docker />
     </div>
   )
 }

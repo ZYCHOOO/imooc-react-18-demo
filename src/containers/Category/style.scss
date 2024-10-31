@@ -186,35 +186,4 @@
       }
     }
   }
-
-  .docker {
-    display: flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #FFF;
-    border-top: .01rem solid #F5F9FA;
-    height: .49rem;
-    font-size: .12rem;
-    color: #B3C1C4;
-    z-index: 3;
-
-    &-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-
-      .iconfont {
-        margin-bottom: .04rem;
-        font-size: .18rem;
-      }
-
-      &.is-active {
-        color: #52C41A;
-      }
-    }
-  }
 }

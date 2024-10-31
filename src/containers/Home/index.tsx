@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-09-26 10:16:51
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 13:01:50
+ * @LastEditTime: 2024-10-31 10:23:13
  * @FilePath: /react-learn/huanlegou/src/containers/Home/index.tsx
  */
 import './style.scss';
@@ -12,6 +12,7 @@ import { ResponseType } from './types';
 import Category from './components/Categoty';
 import Card from './components/Card';
 import Banner from './components/Banner';
+import Docker from '../../components/Docker';
 
 // 默认请求参数
 const defaultRequestData = {
@@ -75,25 +76,7 @@ function Home() {
         —— 我是有底线的 ——
       </div>
 
-      {/* 底部 */}
-      <div className="docker">
-        <div className="docker-item is-active">
-          <span className="iconfont">&#xe6f9;</span>
-          <span className='docker-item-title'>首页</span>
-        </div>
-        <div className="docker-item">
-          <span className="iconfont">&#xe603;</span>
-          <span className='docker-item-title'>分类</span>
-        </div>
-        <div className="docker-item">
-          <span className="iconfont">&#xe826;</span>
-          <span className='docker-item-title'>购物车</span>
-        </div>
-        <div className="docker-item">
-          <span className="iconfont">&#xe691; </span>
-          <span className='docker-item-title'>我的</span>
-        </div>
-      </div>
+      <Docker />
     </div>
   )
 }
