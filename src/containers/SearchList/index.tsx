@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-24 12:22:37
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-28 18:45:17
+ * @LastEditTime: 2024-11-09 11:33:03
  * @FilePath: /react-learn/huanlegou/src/containers/SearchList/index.tsx
  */
 
@@ -123,8 +123,8 @@ function SearchList () {
       <div className="search-list-page-content">
         {
           listData.map((item) => (
-            <Link to={`/detail/${item.id}`}>
-              <div key={item.id} className="list-item">
+            <Link key={item.id} to={`/detail/${item.id}`}>
+              <div className="list-item">
                   <img src={item.imgUrl} alt="" />
                   <div className="list-item-info">
                     <div className='list-item-name'>{item.title}</div>

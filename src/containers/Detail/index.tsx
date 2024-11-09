@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-26 13:01:38
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 12:20:37
+ * @LastEditTime: 2024-11-09 11:51:39
  * @FilePath: /react-learn/huanlegou/src/containers/Detail/index.tsx
  */
 
@@ -9,6 +9,8 @@ import './style.scss';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ResponseType } from './types';
+import Popover from '../../components/Popover';
+import { useState } from 'react';
 
 const requestData = {
   url: '/api/product/detail',
@@ -18,6 +20,7 @@ const requestData = {
 
 function Detail () {
   const navigate = useNavigate();
+  const [showCart, setShowCart] = useState(false);
   const params = useParams<{id: string}>();
   if (params.id) {
     requestData.params.id = params.id;
@@ -75,8 +78,18 @@ function Detail () {
           <span className="iconfont cart-icon">&#xe601;</span>
           <span className="cart-title">购物车</span>
         </div>
-        <div className="btn">加入购物车</div>
+        <div
+          className="btn"
+          onClick={() =>setShowCart(true)}
+        >
+          加入购物车
+        </div>
       </div>
+
+      <Popover
+        show={showCart}
+        outsideClickCallback={() => setShowCart(false)}
+      />
     </div>
   )
 }

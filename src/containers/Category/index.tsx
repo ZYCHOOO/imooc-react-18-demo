@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-29 12:56:49
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-31 10:21:54
+ * @LastEditTime: 2024-11-09 11:37:48
  * @FilePath: /react-learn/huanlegou/src/containers/Category/index.tsx
  */
 
@@ -27,9 +27,12 @@ function Category () {
 
   const handleKeywordChange = (key: string, target: any) => {
     if (key === 'Enter') {
-      console.log(target.value);
       setKeyword(target.value);
     }
+  }
+
+  const productClickHandler = (productId: string) => {
+    navigate(`/detail/${productId}`);
   }
 
   useEffect(() => {
@@ -125,7 +128,7 @@ function Category () {
             <div className="list-total">精选商品（{productList.length}）</div>
             {
               productList.map((product) => (
-                <div key={product.id} className="list-item">
+                <div key={product.id} className="list-item" onClick={() => productClickHandler(product.id)}>
                   <img src={product.imgUrl} alt="" />
                   <div className="list-item-content">
                     <div className="list-item-title">{product.name}</div>
