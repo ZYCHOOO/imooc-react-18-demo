@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-26 13:01:38
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-11-09 11:51:39
+ * @LastEditTime: 2024-11-10 22:01:21
  * @FilePath: /react-learn/huanlegou/src/containers/Detail/index.tsx
  */
 
@@ -89,7 +89,29 @@ function Detail () {
       <Popover
         show={showCart}
         outsideClickCallback={() => setShowCart(false)}
-      />
+      >
+        <div className="cart">
+          <div className="cart-content">
+            <img src={detail?.imgUrl} alt="" className="cart-content-img" />
+            <div className="cart-content-info">
+              <div className="cart-content-title">{detail?.title}</div>
+              <div className="cart-content-price">
+                <span className="yen">&yen;</span>
+                <span>{detail?.price}</span>
+              </div>
+            </div>
+          </div>
+          <div className="cart-count">
+            <div className="cart-count-title">购买数量</div>
+            <div className="cart-count-counter">
+              <span className="cart-count-button">-</span>
+              <span className="cart-count-text">1</span>
+              <span className="cart-count-button">+</span>
+            </div>
+          </div>
+          <div className="cart-btn">加入购物车</div>
+        </div>
+      </Popover>
     </div>
   )
 }
