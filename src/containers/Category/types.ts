@@ -21,3 +21,16 @@ export type CategoryProductListType = {
   message: string;
   data: Array<ProductType>
 }
+
+export type CartProductType = {
+  id: string;
+  imgUrl: string;
+  name: string;
+  price: number;
+  count: number;
+}
+
+export type CartProductResponseType = {
+  message: string;
+  data: CartProductType
+}

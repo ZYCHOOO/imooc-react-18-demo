@@ -83,16 +83,23 @@
           margin: 0 .1rem;
         }
       }
+      &-btns {
+        display: flex;
+        margin: .1rem 0;
+      }
       &-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: .1rem 0;
+        flex: 1;
         height: .44rem;
         background-color: #73D13D;
         border-radius: .22rem;
         font-size: .16rem;
         color: #FFF;
+        + .cart-btn {
+          margin-left: .23rem;
+        }
       }
     }
   }

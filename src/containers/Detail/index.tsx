@@ -164,9 +164,14 @@ function Detail () {
               </span>
             </div>
           </div>
-          <div
-            className="cart-btn"
-            onClick={() => addCartHandler()}>加入购物车</div>
+          <div className="cart-btns">
+            <div
+              className="cart-btn"
+              onClick={() => addCartHandler()}
+            >
+              加入购物车
+            </div>
+          </div>
         </div>
       </Popover>
     </div>
