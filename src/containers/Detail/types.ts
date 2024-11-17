@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-10-29 12:14:22
  * @FilePath: /react-learn/huanlegou/src/containers/Detail/types.ts
  */
-export type ResponseType = {
+export type DetailResponseType = {
   success: string;
   data: {
     id: string;
@@ -18,3 +18,15 @@ export type ResponseType = {
     detail: string;
   }
 }
+
+export type CartCountResponseType = {
+  success: string;
+  data: {
+    count: number
+  }
+}
+
+export type CartChangeResponseType = {
+  success: string;
+  data: boolean;
+} 

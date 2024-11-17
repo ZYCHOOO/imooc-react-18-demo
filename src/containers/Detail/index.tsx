@@ -1,16 +1,17 @@
 /*
  * @Date: 2024-10-26 13:01:38
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-11-10 22:01:21
+ * @LastEditTime: 2024-11-16 10:12:22
  * @FilePath: /react-learn/huanlegou/src/containers/Detail/index.tsx
  */
 
 import './style.scss';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ResponseType } from './types';
+import { DetailResponseType, CartCountResponseType, CartChangeResponseType } from './types';
 import Popover from '../../components/Popover';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { message } from '../../utils/message';
 
 const requestData = {
   url: '/api/product/detail',
@@ -20,13 +21,56 @@ const requestData = {
 
 function Detail () {
   const navigate = useNavigate();
-  const [showCart, setShowCart] = useState(false);
   const params = useParams<{id: string}>();
+  const [showCart, setShowCart] = useState(false);
+  const [cartCount, setCardCount] = useState(0);
+  const [cartTempCount, setCartTempCount] = useState(0);
+  const { data } = useRequest<DetailResponseType>(requestData);
+  const { request: cartCountRequest } = useRequest<CartCountResponseType>({ manual: true });
+  const { request: cartChangeRequest } = useRequest<CartChangeResponseType>({ manual: true });
+  const detail = data?.data;
   if (params.id) {
     requestData.params.id = params.id;
   }
-  const { data } = useRequest<ResponseType>(requestData);
-  const detail = data?.data;
+
+  useEffect(() => {
+    cartCountRequest({
+      url: '/api/cart',
+      method: 'GET',
+      params: { id: params.id }
+    }).then((response) => {
+      setCardCount(response.data.count);
+      setCartTempCount(response.data.count);
+    }).catch((e) => {
+      message(e.message);
+    })
+  }, [cartCountRequest, params.id])
+
+  const toggleCartHandler = () => {
+    setCartTempCount(cartCount);
+    setShowCart(true);
+  }
+
+  const changeCartTempCount = (count: number) => {
+    if (count < 0) {
+      setCartTempCount(0);
+      return;
+    }
+    setCartTempCount(count);
+  }
+
+  const addCartHandler = () => {
+    cartChangeRequest({
+      url: '/api/changeCartCount',
+      method: 'GET',
+      params: { id: params.id, count: cartTempCount }
+    }).then((res) => {
+      setShowCart(false);
+      setCardCount(cartTempCount);
+    }).catch((e) => {
+      message(e.message);
+    })
+  }
 
   return (
     <div className="page detail-page">
@@ -77,10 +121,11 @@ function Detail () {
         <div className="cart">
           <span className="iconfont cart-icon">&#xe601;</span>
           <span className="cart-title">购物车</span>
+          <span className="cart-count">{ cartCount }</span>
         </div>
         <div
           className="btn"
-          onClick={() =>setShowCart(true)}
+          onClick={() => toggleCartHandler()}
         >
           加入购物车
         </div>
@@ -104,12 +149,24 @@ function Detail () {
           <div className="cart-count">
             <div className="cart-count-title">购买数量</div>
             <div className="cart-count-counter">
-              <span className="cart-count-button">-</span>
-              <span className="cart-count-text">1</span>
-              <span className="cart-count-button">+</span>
+              <span
+                className="cart-count-button"
+                onClick={() => changeCartTempCount(cartTempCount - 1)}
+              >
+                -
+              </span>
+              <span className="cart-count-text">{cartTempCount}</span>
+              <span
+                className="cart-count-button"
+                onClick={() => changeCartTempCount(cartTempCount + 1)}
+              >
+                +
+              </span>
             </div>
           </div>
-          <div className="cart-btn">加入购物车</div>
+          <div
+            className="cart-btn"
+            onClick={() => addCartHandler()}>加入购物车</div>
         </div>
       </Popover>
     </div>

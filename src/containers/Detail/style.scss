@@ -145,6 +145,7 @@
     background-color: #FFF;
 
     .cart {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -157,6 +158,20 @@
         font-size: .11rem;
         line-height: .16rem;
         color: #242424;
+      }
+      &-count {
+        position: absolute;
+        top: -.06rem;
+        right: .32rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: .16rem;
+        height: .16rem;
+        background-color: #73D13D;
+        border-radius: 50%;
+        font-size: .11rem;
+        color: #FFF;
       }
     }
 
