@@ -2,7 +2,7 @@
 /*
 * @Date: 2024-10-23 12:05:11
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 13:06:28
+ * @LastEditTime: 2024-11-18 09:50:33
  * @FilePath: /react-learn/huanlegou/src/containers/Search/index.tsx
 */
 import './style.scss';
@@ -65,12 +65,12 @@ function Search() {
 
   return (
     <div className="page search-page">
-      <div className="search-page-header">
+      <div className="search-page-header flex flex-align-center">
         <Link to="/home">
           <div className="iconfont back-icon">&#xe600;</div>
         </Link>
 
-        <div className="search">
+        <div className="search flex flex-align-center">
           <div className="iconfont search-icon">&#xe610;</div>
           <input
             value={keyword}
@@ -86,20 +86,20 @@ function Search() {
       {
         historyList.length ? (
           <>
-            <div className="search-page-title">
+            <div className="search-page-title flex flex-align-center">
               <span>历史搜索</span>
               <div
                 className="iconfont close-icon"
                 onClick={clearHistoryClick}
               >&#xe62b;</div>
             </div>
-            <ul className="history-list">
+            <ul className="history-list flex flex-wrap">
               {
                 (historyList || []).map((item, index) => {
                   return (
                     <li
                       key={index}
-                      className="history-list-item"
+                      className="history-list-item flex flex-align-center"
                       onClick={() => {handleKeyword(item)}}
                     >
                       {item}
@@ -117,12 +117,12 @@ function Search() {
         hotSearchList.length ? (
           <>
             <div className="search-page-title" style={{marginTop: '0.18rem'}}>热门搜索</div>
-            <ul className="hot-list">
+            <ul className="hot-list flex flex-wrap">
               {
                 hotSearchList.map((item) => (
                   <li
                     key={item.id}
-                    className="hot-list-item"
+                    className="hot-list-item flex flex-align-center"
                     onClick={() => {handleKeyword(item.name)}}
                   >
                     {item.name}

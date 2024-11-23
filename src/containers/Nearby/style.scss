@@ -3,8 +3,6 @@
     position: relative;
     padding: .08rem 0 .15rem 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
     background-color: #FFF;
     font-size: .18rem;
     line-height: .21rem;
@@ -89,10 +87,8 @@
 
     &-list {
       &-item {
-        display: flex;
         padding: .11rem .24rem .09rem;
         height: .94rem;
-        align-items: center;
         box-sizing: border-box;
         font-size: .12rem;
         line-height: .18rem;
@@ -108,7 +104,6 @@
         }
         &-right {
           margin-left: auto;
-          display: flex;
           color: #6E6E6E;
           .iconfont {
             margin-right: .07rem;
@@ -131,14 +126,11 @@
     &-current {
       margin: .11rem 0 .33rem;
       padding: 0 .1rem 0 .24rem;
-      display: flex;
       font-size: .15rem;
       line-height: .18rem;
       color: #242424;
       &-operate {
         margin-left: auto;
-        display: flex;
-        align-items: center;
         font-size: .12rem;
 
         .iconfont {
@@ -148,8 +140,6 @@
     }
     &-list {
       &-item {
-        display: flex;
-        flex-direction: column;
         padding: .11rem .24rem .12rem;
         height: .72rem;
         box-sizing: border-box;

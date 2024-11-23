@@ -1,13 +1,14 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 12:58:36
+ * @LastEditTime: 2024-11-17 21:56:54
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
 import 'normalize.css';
 import './styles/base.css';
 import './styles/border.css';
+import './styles/common.scss';
 
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 

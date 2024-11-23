@@ -22,7 +22,7 @@ function Nearby () {
 
   return (
     <div className="page nearby-page">
-      <div className="nearby-page-header">
+      <div className="nearby-page-header flex flex-align-center">
         <Link to="/home">
           <div className="iconfont">&#xe600;</div>
         </Link>

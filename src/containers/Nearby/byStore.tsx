@@ -45,7 +45,7 @@ const ByStore = () => {
             return (
               <li
                 key={item.id}
-                className="store-list-item"
+                className="store-list-item flex flex-align-center"
                 onClick={() => handleStoreClick(item.longitude, item.latitude)}
               >
                 <div className="store-list-item-left">
@@ -53,7 +53,7 @@ const ByStore = () => {
                   <div className="store-list-item-desc">联系电话：{item.phone}</div>
                   <div className="store-list-item-address">{item.address}</div>
                 </div>
-                <div className="store-list-item-right">
+                <div className="store-list-item-right flex">
                   <div className="iconfont">&#xe790;</div>
                   <span className="distance">{item.distance}</span>
                 </div>

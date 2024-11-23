@@ -42,7 +42,7 @@ const Docker = (props: {activeName: string}) => {
         dockerItems.map((item) => (
           <div
             key={item.name}
-            className={ activeName === item.name ? 'docker-item is-active' : 'docker-item'}
+            className={ activeName === item.name ? 'docker-item is-active flex flex-column flex-center' : 'docker-item flex flex-column flex-center'}
             onClick={() => navigate(item.url)}
           >
             <span className="iconfont" dangerouslySetInnerHTML={{ __html: item.icon}} />

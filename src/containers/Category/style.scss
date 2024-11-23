@@ -4,9 +4,6 @@
   &-header {
     position: relative;
     padding: 0 .32rem 0 .48rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #FFF;
     height: .44rem;
     width: 100%;
@@ -30,8 +27,6 @@
     position: relative;
     margin: .06rem 0;
     padding: 0 .1rem;
-    display: flex;
-    align-items: center;
     font-size: .14rem;
     &-icon {
       position: absolute;
@@ -60,9 +55,6 @@
       background-color: #F5F9FA;
       overflow-y: scroll;
       &-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         height: .52rem;
         font-size: .13rem;
         line-height: .19rem;
@@ -76,21 +68,15 @@
 
       &-content {
         padding: .1rem;
-        display: flex;
-        flex-direction: column;
         flex: 1;
         overflow: hidden;
 
         .tags {
-          display: flex;
           overflow: scroll;
           white-space: nowrap;
           padding-bottom: .17rem;
 
           .tag-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: .62rem;
             height: .32rem;
             border-radius: .05rem;
@@ -111,8 +97,6 @@
         }
 
         .list {
-          display: flex;
-          flex-direction: column;
           flex: 1;
           overflow-x: scroll;
 
@@ -126,7 +110,6 @@
           &-item {
             position: relative;
             padding: .1rem;
-            display: flex;
 
             img {
               width: .78rem;
@@ -169,11 +152,8 @@
 
             &-btn {
               position: absolute;
-              display: flex;
               right: .1rem;
               bottom: .1rem;
-              align-items: center;
-              justify-content: center;
               width: .4rem;
               height: .24rem;
               border-radius: .04rem;
