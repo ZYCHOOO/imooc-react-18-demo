@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-21 13:19:05
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-25 14:53:39
+ * @LastEditTime: 2024-11-24 17:50:24
  * @FilePath: /react-learn/huanlegou/src/containers/Nearby/byStore.tsx
  */
 import { useNavigate, useOutletContext } from "react-router-dom";
@@ -45,7 +45,7 @@ const ByStore = () => {
             return (
               <li
                 key={item.id}
-                className="store-list-item flex flex-align-center"
+                className="store-list-item flex-row flex-align-center"
                 onClick={() => handleStoreClick(item.longitude, item.latitude)}
               >
                 <div className="store-list-item-left">

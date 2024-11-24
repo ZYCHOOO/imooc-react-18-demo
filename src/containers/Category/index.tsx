@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-29 12:56:49
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-11-23 11:35:03
+ * @LastEditTime: 2024-11-24 18:26:22
  * @FilePath: /react-learn/huanlegou/src/containers/Category/index.tsx
  */
 
@@ -116,17 +116,11 @@ function Category () {
 
   return (
     <div className="page category-page">
-      <div className="category-page-header flex flex-center">
-        <div
-          className="iconfont back-icon"
-          onClick={() => navigate(-1)}
-        >
-          &#xe600;
-        </div>
-        <span>分类</span>
+      <div className="category-page-header flex-row flex-center">
+        分类
       </div>
 
-      <div className="search flex flex-align-center">
+      <div className="search flex-row flex-align-center">
         <div className="iconfont search-icon">&#xe610;</div>
         <input
           className="search-input"
@@ -138,7 +132,7 @@ function Category () {
       <div className="category-page-content">
         <div className="category">
           <div
-            className={currentCategory === '' ? 'category-item is-active flex flex-center' : 'category-item flex flex-center'}
+            className={currentCategory === '' ? 'category-item is-active flex-row flex-center' : 'category-item flex-row flex-center'}
             onClick={() => setCurrentCategory('')}
           >
             全部商品
@@ -147,7 +141,7 @@ function Category () {
             categories.map((category) => (
               <div
                 key={category.id}
-                className={currentCategory === category.id ? 'category-item is-active flex flex-center' : 'category-item flex flex-center'}
+                className={currentCategory === category.id ? 'category-item is-active flex-row flex-center' : 'category-item flex-row flex-center'}
                 onClick={() => setCurrentCategory(category.id)}
               >
                 {category.name}
@@ -155,10 +149,10 @@ function Category () {
             ))
           }
         </div>
-        <div className="category-content flex flex-column">
-          <div className="tags flex">
+        <div className="category-content flex-row flex-column">
+          <div className="tags flex-row">
             <div
-              className={currentTag === '' ? 'tag-item is-active flex flex-center' : 'tag-item flex flex-center'}
+              className={currentTag === '' ? 'tag-item is-active flex-row flex-center' : 'tag-item flex-row flex-center'}
               onClick={() => setCurrentTag('')}
             >
               全部
@@ -167,7 +161,7 @@ function Category () {
               tags.map((tag, index) => (
                 <div
                   key={index}
-                  className={currentTag === tag ? 'tag-item is-active flex flex-center' : 'tag-item flex flex-center'}
+                  className={currentTag === tag ? 'tag-item is-active flex-row flex-center' : 'tag-item flex-row flex-center'}
                   onClick={() => setCurrentTag(tag)}
                 >
                   {tag}
@@ -175,13 +169,13 @@ function Category () {
               ))
             }
           </div>
-          <div className="list flex flex-column">
+          <div className="list flex-row flex-column">
             <div className="list-total">精选商品（{productList.length}）</div>
             {
               productList.map((product) => (
                 <div
                   key={product.id}
-                  className="list-item flex"
+                  className="list-item flex-row"
                   onClick={() => productClickHandler(product.id)}
                 >
                   <img src={product.imgUrl} alt="" />
@@ -193,7 +187,7 @@ function Category () {
                       <span>{product.price}</span>
                     </div>
                     <div
-                      className="list-item-btn flex flex-center"
+                      className="list-item-btn flex-row flex-center"
                       onClick={(event) => addCartHandler(product.id, event)}
                     >
                       购买

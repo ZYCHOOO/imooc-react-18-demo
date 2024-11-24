@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-05-28 23:07:15
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-11-17 21:56:54
+ * @LastEditTime: 2024-11-24 11:40:41
  * @FilePath: /react-learn/huanlegou/src/App.tsx
  */
 
@@ -24,6 +24,7 @@ import Search from './containers/Search';
 import SearchList from './containers/SearchList';
 import Detail from './containers/Detail';
 import Category from './containers/Category';
+import Cart from './containers/Cart';
 
 const router = createHashRouter([
   {
@@ -64,6 +65,9 @@ const router = createHashRouter([
   }, {
     path: '/category',
     element: <Category />
+  }, {
+    path: '/cart',
+    element: <Cart />
   }
 ])
 

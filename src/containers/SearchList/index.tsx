@@ -72,12 +72,12 @@ function SearchList () {
 
   return (
     <div className="page search-list-page">
-      <div className="search-list-page-header flex flex-align-center">
+      <div className="search-list-page-header flex-row flex-align-center">
         <Link to={`/search/${params.shopId}`}>
           <div className="iconfont back-icon">&#xe600;</div>
         </Link>
 
-        <div className="search flex flex-align-center">
+        <div className="search flex-row flex-align-center">
           <div className="iconfont search-icon">&#xe610;</div>
           <input
             value={keyword}
@@ -99,7 +99,7 @@ function SearchList () {
         </div>
       </div>
 
-      <div className="search-list-page-tabs flex flex-align-center">
+      <div className="search-list-page-tabs flex-row flex-align-center">
         <div
           className={ currentTab === 'default' ? 'tab-item is-active' : 'tab-item'}
           onClick={() => handleTabClick('default')}
@@ -124,7 +124,7 @@ function SearchList () {
         {
           listData.map((item) => (
             <Link key={item.id} to={`/detail/${item.id}`}>
-              <div className="list-item flex flex-align-center">
+              <div className="list-item flex-row flex-align-center">
                   <img src={item.imgUrl} alt="" />
                   <div className="list-item-info">
                     <div className='list-item-name'>{item.title}</div>

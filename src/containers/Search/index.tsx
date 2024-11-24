@@ -65,12 +65,12 @@ function Search() {
 
   return (
     <div className="page search-page">
-      <div className="search-page-header flex flex-align-center">
+      <div className="search-page-header flex-row flex-align-center">
         <Link to="/home">
           <div className="iconfont back-icon">&#xe600;</div>
         </Link>
 
-        <div className="search flex flex-align-center">
+        <div className="search flex-row flex-align-center">
           <div className="iconfont search-icon">&#xe610;</div>
           <input
             value={keyword}
@@ -86,20 +86,20 @@ function Search() {
       {
         historyList.length ? (
           <>
-            <div className="search-page-title flex flex-align-center">
+            <div className="search-page-title flex-row flex-align-center">
               <span>历史搜索</span>
               <div
                 className="iconfont close-icon"
                 onClick={clearHistoryClick}
               >&#xe62b;</div>
             </div>
-            <ul className="history-list flex flex-wrap">
+            <ul className="history-list flex-row flex-wrap">
               {
                 (historyList || []).map((item, index) => {
                   return (
                     <li
                       key={index}
-                      className="history-list-item flex flex-align-center"
+                      className="history-list-item flex-row flex-align-center"
                       onClick={() => {handleKeyword(item)}}
                     >
                       {item}
@@ -117,12 +117,12 @@ function Search() {
         hotSearchList.length ? (
           <>
             <div className="search-page-title" style={{marginTop: '0.18rem'}}>热门搜索</div>
-            <ul className="hot-list flex flex-wrap">
+            <ul className="hot-list flex-row flex-wrap">
               {
                 hotSearchList.map((item) => (
                   <li
                     key={item.id}
-                    className="hot-list-item flex flex-align-center"
+                    className="hot-list-item flex-row flex-align-center"
                     onClick={() => {handleKeyword(item.name)}}
                   >
                     {item.name}

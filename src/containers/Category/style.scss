@@ -2,25 +2,14 @@
   height: auto;
 
   &-header {
-    position: relative;
     padding: 0 .32rem 0 .48rem;
     background: #FFF;
     height: .44rem;
     width: 100%;
     box-sizing: border-box;
-
-    .back-icon {
-      position: absolute;
-      left: .1rem;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    span {
-      font-size: .18rem;
-      line-height: .21rem;
-      color: #242424;
-    }
+    font-size: .18rem;
+    line-height: .21rem;
+    color: #242424;
   }
 
   .search {
