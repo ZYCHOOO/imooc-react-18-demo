@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-26 13:06:23
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-10-29 12:14:22
+ * @LastEditTime: 2024-11-23 11:20:31
  * @FilePath: /react-learn/huanlegou/src/containers/Detail/types.ts
  */
 export type DetailResponseType = {
@@ -25,8 +25,3 @@ export type CartCountResponseType = {
     count: number
   }
 }
-
-export type CartChangeResponseType = {
-  success: string;
-  data: boolean;
-} 

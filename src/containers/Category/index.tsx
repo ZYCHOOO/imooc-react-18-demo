@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-10-29 12:56:49
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-11-17 22:05:44
+ * @LastEditTime: 2024-11-23 11:35:03
  * @FilePath: /react-learn/huanlegou/src/containers/Category/index.tsx
  */
 
@@ -11,6 +11,7 @@ import useRequest from '../../hooks/useRequest';
 import { useNavigate } from "react-router-dom";
 import { message } from '../../utils/message';
 import { CategoryTagResponseType, CategoryProductListType, ProductType, CartProductResponseType, CartProductType } from './types';
+import { CartChangeResponseType } from '../../types';
 import Docker from '../../components/Docker';
 import Popover from '../../components/Popover';
 
@@ -20,17 +21,22 @@ function Category () {
   const [showCart, setShowCart] = useState(false);
   const [currentTag, setCurrentTag] = useState('');
   const [currentCategory, setCurrentCategory] = useState('');
-  const [cartTempCount, setCartTempCount] = useState(0);
-  const [productInfo, setProductInfo] = useState({
+  const [productInfo, setProductInfo] = useState<CartProductType>({
     id: '', imgUrl: '', name: '', price: 0, count: 0
   })
   const [productList, setProductList] = useState<Array<ProductType>>([]);
   const [categories, setCategories] = useState<Array<{id: string, name: string}>>([]);
   const [tags, setTags] = useState<string[]>([]);
 
+  // 获取分类
   const { request: tagRequest } = useRequest<CategoryTagResponseType>({ manual: true });
+  // 获取商品
   const { request: productRequest } = useRequest<CategoryProductListType>({ manual: true });
+  // 获取购物车信息
   const { request: cartProductRequest } = useRequest<CartProductResponseType>({ manual: true })
+  // 添加购物车
+  const { request: cartChangeRequest } = useRequest<CartChangeResponseType>({ manual: true });
+
 
   const handleKeywordChange = (key: string, target: any) => {
     if (key === 'Enter') {
@@ -50,20 +56,34 @@ function Category () {
       params: { productId }
     }).then((res) => {
       setProductInfo(res.data);
-      const { count } = res.data;
-      setCartTempCount(count);
       setShowCart(true);
     }).catch((e) => {
       message(e.message);
     })
   }
 
-  const changeCartTempCount = (count: number) => {
-    if (count < 0) {
-      setCartTempCount(0);
-      return;
+  const changeCartCount = (type: string) => {
+    const newProductInfo = { ...productInfo };
+    const { count } = newProductInfo;
+    if (type === 'add') {
+      newProductInfo.count = count + 1;
+    } else {
+      newProductInfo.count = count - 1 < 0 ? 0 : count -1;
     }
-    setCartTempCount(count);
+    setProductInfo(newProductInfo);
+  }
+
+  const confirmCartHandler = () => {
+    const { id, count } = productInfo;
+    cartChangeRequest({
+      url: '/api/changeCartCount',
+      method: 'GET',
+      params: { id, count }
+    }).then((res) => {
+      setShowCart(false);
+    }).catch((e) => {
+      message(e.message);
+    })
   }
 
   useEffect(() => {
@@ -208,21 +228,21 @@ function Category () {
             <div className="cart-count-counter">
               <span
                 className="cart-count-button"
-                onClick={() => changeCartTempCount(cartTempCount - 1)}
+                onClick={() => changeCartCount('minus')}
               >
                 -
               </span>
-              <span className="cart-count-text">{cartTempCount}</span>
+              <span className="cart-count-text">{productInfo.count}</span>
               <span
                 className="cart-count-button"
-                onClick={() => changeCartTempCount(cartTempCount + 1)}
+                onClick={() => changeCartCount('add')}
               >
                 +
               </span>
             </div>
           </div>
           <div className="cart-btns">
-            <div className="cart-btn">加入购物车</div>
+            <div className="cart-btn" onClick={() => confirmCartHandler()}>加入购物车</div>
             <div className="cart-btn">立即购买</div>
           </div>
         </div>

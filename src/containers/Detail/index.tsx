@@ -1,14 +1,15 @@
 /*
  * @Date: 2024-10-26 13:01:38
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-11-16 10:12:22
+ * @LastEditTime: 2024-11-23 11:32:56
  * @FilePath: /react-learn/huanlegou/src/containers/Detail/index.tsx
  */
 
 import './style.scss';
 import useRequest from '../../hooks/useRequest';
 import { useNavigate, useParams } from 'react-router-dom';
-import { DetailResponseType, CartCountResponseType, CartChangeResponseType } from './types';
+import { CartChangeResponseType } from '../../types';
+import { DetailResponseType, CartCountResponseType } from './types';
 import Popover from '../../components/Popover';
 import { useEffect, useState } from 'react';
 import { message } from '../../utils/message';
