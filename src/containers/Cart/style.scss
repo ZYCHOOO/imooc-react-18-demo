@@ -1,5 +1,5 @@
 .cart-page {
-  // padding-bottom: 1.1rem;
+  min-height: 100vh;
   height: auto;
   background-color: #F5F9FA;
 
@@ -20,12 +20,10 @@
     color: #242424;
   }
 
-  &-content {
-    padding-bottom: 1rem;
-  }
+  &-content { padding-bottom: 1.1rem; }
 
   &-item {
-    margin: .1rem 0;
+    margin: .1rem 0 0;
     padding: .12rem .1rem 0 .1rem;
     background-color: #FFF;
 
@@ -96,10 +94,14 @@
             font-size: .15rem;
             line-height: .22rem;
             color: #242424;
-
-            + .product-operate-item {
-              margin-left: .08rem;
-            }
+          }
+          &-input {
+            margin: 0 .08rem;
+            width: .24rem;
+            height: .24rem;
+            border: .01rem solid #DFDFDF;
+            font-size: .15rem;
+            text-align: center;
           }
         }
       }

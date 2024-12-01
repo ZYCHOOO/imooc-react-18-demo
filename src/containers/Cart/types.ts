@@ -1,10 +1,20 @@
-export type CategoryTagResponseType = {
+type CartItemType = {
+  productId: string;
+  imgUrl: string;
+  weight: string;
+  title: string;
+  price: number;
+  count: number;
+  isChecked?: boolean;
+}
+
+export type ShopListItemType = {
+  shopId: string;
+  shopName: string;
+  cartList: Array<CartItemType>;
+}
+
+export type CartListResponseType = {
   message: string;
-  data: {
-    category: Array<{
-      id: string;
-      name: string;
-    }>;
-    tag: string[];
-  }
+  data: Array<ShopListItemType>;
 }

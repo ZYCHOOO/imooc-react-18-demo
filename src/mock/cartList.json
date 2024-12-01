@@ -1,0 +1,49 @@
+{
+  "message": "success",
+  "data": [
+    {
+      "shopId": "8137",
+      "shopName": "喜梅蔬菜店",
+      "cartList": [
+        {
+          "productId": "88391",
+          "imgUrl": "http://statics.dell-lee.com/shopping/category-list-5.png",
+          "weight": "0.45kg",
+          "title": "潍坊水果萝卜10斤水果萝卜甜脆水果型潍县青沙窝天津萝卜",
+          "price": 14.9,
+          "count": 2
+        },
+        {
+          "productId": "88392",
+          "imgUrl": "http://statics.dell-lee.com/shopping/category-list-3.png",
+          "weight": "0.45kg",
+          "title": "城市厨房 澳洲牛肉卷肥牛卷450g牛肉片火锅生鲜牛羊肉类食材",
+          "price": 35,
+          "count": 2
+        }
+      ]
+    },
+    {
+      "shopId": "8318",
+      "shopName": "优果购",
+      "cartList": [
+        {
+          "productId": "89391",
+          "imgUrl": "http://statics.dell-lee.com/shopping/category-list-6.png",
+          "weight": "0.9kg",
+          "title": "品珍鲜活 生鲜鱼类三去净膛红星斑彩虹鲷红罗非鱼净重900g",
+          "price": 69.9,
+          "count": 1
+        },
+        {
+          "productId": "89392",
+          "imgUrl": "http://statics.dell-lee.com/shopping/category-list-2.png",
+          "weight": "1.5kg",
+          "title": "禧美 国产大虾 净重1.8kg 90-108只/盒 对虾 烧烤 火锅 生鲜 海鲜…",
+          "price": 119,
+          "count": 3
+        }
+      ]
+    }
+  ]
+}
