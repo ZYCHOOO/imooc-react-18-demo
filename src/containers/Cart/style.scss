@@ -8,6 +8,10 @@
     height: .24rem;
     border: .01rem solid #B1B1B1;
     border-radius: 50%;
+    &.is-checked {
+      border-color: #74D13F;
+      background-color: #73D13D;
+    }
   }
   &-header {
     padding: 0 .32rem 0 .48rem;
@@ -96,7 +100,7 @@
             color: #242424;
           }
           &-input {
-            margin: 0 .08rem;
+            // margin: 0 .08rem;
             width: .24rem;
             height: .24rem;
             border: .01rem solid #DFDFDF;

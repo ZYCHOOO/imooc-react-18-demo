@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-11-24 11:38:06
  * @LastEditors: 曾逸超
- * @LastEditTime: 2024-12-03 17:24:45
+ * @LastEditTime: 2024-12-08 23:24:56
  * @FilePath: /react-learn/huanlegou/src/containers/Cart/index.tsx
  */
 
@@ -14,6 +14,7 @@ import { message } from '../../utils/message';
 
 function Cart () {
   const [cartList, setCartList] = useState<ShopListItemType[]>([]);
+  const [allChecked, setAllChecked] = useState(false);
 
   const { request } = useRequest<CartListResponseType>({ manual: true });
 
@@ -33,6 +34,12 @@ function Cart () {
     })
   }, [request]);
 
+  useEffect(() => {
+    // 存在未全选的情况
+    const notAllChecked = cartList.find((shop) => !shop.isChecked);
+    setAllChecked(!notAllChecked);
+  }, [cartList])
+
   const handleCountChange = (shopId: string, productId: string, count: string) => {
     const newCartList = [...cartList];
     const shop = newCartList.find((shop) => shop.shopId === shopId);
@@ -40,6 +47,43 @@ function Cart () {
       if (product.productId === productId) {
         product.count = (+count) ? Number(count) : 0;
       }
+    })
+    setCartList(newCartList);
+  }
+
+  const handleShopClick = (shopId: string) => {
+    const newCartList = [...cartList];
+    const shop = newCartList.find((shop) => shop.shopId === shopId);
+    shop!.isChecked = !shop?.isChecked;
+    shop?.cartList.forEach((product) => {
+      product.isChecked = !product.isChecked;
+    })
+    setCartList(newCartList);
+  }
+
+  const handleProductClick = (shopId: string, productId: string) => {
+    const newCartList = [...cartList];
+    const shop = newCartList.find((shop) => shop.shopId === shopId);
+    let shopChecked = true;
+    shop?.cartList.forEach((product) => {
+      if (product.productId === productId) {
+        product.isChecked = !product.isChecked;
+      }
+      if (!product.isChecked) {
+        shopChecked = false;
+      }
+    })
+    shop!.isChecked = shopChecked;
+    setCartList(newCartList);
+  }
+
+  const handleAllChecked = () => {
+    const newCartList = [...cartList];
+    newCartList.forEach((shop) => {
+      shop.isChecked = !allChecked;
+      shop.cartList.forEach((product) => {
+        product.isChecked = !allChecked;
+      })
     })
     setCartList(newCartList);
   }
@@ -52,24 +96,28 @@ function Cart () {
 
       <div className="cart-page-content flex-column">
         {
-          (cartList || []).map((item) => {
+          (cartList || []).map((shop) => {
             return (
               <div
-                key={item.shopId}
+                key={shop.shopId}
                 className="cart-page-item"
               >
                 <div className="shop-title flex-row flex-align-center">
-                  <span className="radio"></span>
+                  <span
+                    className={shop.isChecked ? "radio is-checked" : "radio"}
+                    onClick={() => handleShopClick(shop.shopId)}
+                  />
                   <span className="iconfont">&#xe676;</span>
-                  <span className="shop-title-text">{item.shopName}</span>
+                  <span className="shop-title-text">{shop.shopName}</span>
                 </div>
-                {(item.cartList || []).map((cartItem) => {
+                {(shop.cartList || []).map((cartItem) => {
                   return (
                     <div
                       key={cartItem.productId}
                       className="product-item flex-row flex-align-center"
+                      onClick={() => handleProductClick(shop.shopId, cartItem.productId)}
                     >
-                      <span className="radio"></span>
+                      <span className={cartItem.isChecked ? "radio is-checked" : "radio"} />
                       <img src={cartItem.imgUrl} alt="" />
                       <div className="product-item-info flex-column">
                         <span className="product-name">{cartItem.title}</span>
@@ -79,13 +127,13 @@ function Cart () {
                           <span>{cartItem.price}</span>
                         </div>
                         <div className="product-operate flex-row">
-                          <span className="product-operate-item flex-row flex-center">-</span>
+                          {/* <span className="product-operate-item flex-row flex-center">-</span> */}
                           <input
                             value={cartItem.count}
                             className="product-operate-input"
-                            onChange={(e) => handleCountChange(item.shopId, cartItem.productId, e.target.value)}
+                            onChange={(e) => handleCountChange(shop.shopId, cartItem.productId, e.target.value)}
                           />
-                          <span className="product-operate-item flex-row flex-center">+</span>
+                          {/* <span className="product-operate-item flex-row flex-center">+</span> */}
                         </div>
                       </div>
                   </div>
@@ -98,7 +146,10 @@ function Cart () {
       </div>
 
       <div className="cart-page-bottom flex-row flex-align-center">
-        <span className="radio"></span>
+        <span
+          className={allChecked ? "radio is-checked" : "radio"}
+          onClick={() => handleAllChecked()}
+        />
         <span className="select-all">全选</span>
         <div className="total flex-row">
           <span className="total-text">合计：</span>

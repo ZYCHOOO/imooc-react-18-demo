@@ -11,6 +11,7 @@ type CartItemType = {
 export type ShopListItemType = {
   shopId: string;
   shopName: string;
+  isChecked?: boolean;
   cartList: Array<CartItemType>;
 }
 
